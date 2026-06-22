@@ -51,3 +51,12 @@ test('propiedades: lista con tarjeta a Valle Imperial', () => {
   assert.match(h, /href="\/propiedades\/valle-imperial"/);
   assert.match(h, /En venta/);
 });
+
+test('ficha: datos clave con placeholders, amenidades y descripción', () => {
+  assert.ok(exists('propiedades/valle-imperial/index.html'), 'falta la ficha');
+  const h = read('propiedades/valle-imperial/index.html');
+  assert.ok(h.includes('****'), 'deben verse los datos pendientes ****');
+  assert.match(h, /Precio/);
+  assert.match(h, /Amenidades/);
+  assert.match(h, /comunidad privada en Zapopan/);
+});

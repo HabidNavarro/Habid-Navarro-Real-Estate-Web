@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import KeyFacts from '../../components/KeyFacts.astro';
+import AmenityGrid from '../../components/AmenityGrid.astro';
+import Gallery from '../../components/Gallery.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { propiedades, type Propiedad } from '../../data/propiedades';
+
+export function getStaticPaths() {
+  return propiedades.map((p) => ({ params: { slug: p.slug }, props: { p } }));
+}
+interface Props { p: Propiedad; }
+const { p } = Astro.props;
+---
+<BaseLayout title={p.nombre} description={p.resumen} image={p.galeria[0]}>
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">{p.estado} · {p.municipio}, {p.entidad}</p>
+      <h1 class="sec-title">{p.nombre}</h1>
+      <div style="margin-top:24px"><Gallery imagenes={p.galeria} alt={p.nombre} /></div>
+      <div style="margin-top:28px"><KeyFacts precio={p.precio} superficie={p.superficie} tipo={p.tipo} ubicacion={p.ubicacion} municipio={p.municipio} /></div>
+      <div class="detail-desc">
+        {p.descripcion.map((par) => <p>{par}</p>)}
+      </div>
+      <h2 class="sub-h">Amenidades</h2>
+      <AmenityGrid amenidades={p.amenidades} />
+      {p.mapaEmbed
+        ? <div class="mapwrap" set:html={p.mapaEmbed}></div>
+        : <p class="muted map-pending">📍 Ubicación exacta y mapa: por actualizar.</p>}
+    </div>
+  </section>
+  <CtaBand titulo={`¿Quieres más información de ${p.nombre}?`} />
+</BaseLayout>
+<style>
+  .detail-desc{max-width:720px;margin-top:30px;display:flex;flex-direction:column;gap:14px;font-size:17px}
+  .map-pending{margin-top:24px;padding:18px;border:1px dashed var(--border);border-radius:12px}
+  .mapwrap{margin-top:24px;border-radius:12px;overflow:hidden}
+  .mapwrap :global(iframe){width:100%;min-height:360px;border:0;display:block}
+</style>
