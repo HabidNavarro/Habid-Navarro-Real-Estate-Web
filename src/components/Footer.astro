@@ -1,0 +1,40 @@
+---
+import { site, waLink } from '../data/site';
+import BrandLogo from './BrandLogo.astro';
+const year = new Date().getFullYear();
+---
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <BrandLogo height={30} />
+      <p class="muted footer-tag">{site.tagline}</p>
+    </div>
+    <div class="footer-col">
+      <h3 class="footer-h">Contacto</h3>
+      <a href={waLink()} target="_blank" rel="noopener">WhatsApp</a>
+      <a href={`tel:${site.telefono}`}>{site.telefonoDisplay}</a>
+      <a href={`mailto:${site.email}`}>{site.email}</a>
+    </div>
+    <div class="footer-col">
+      <h3 class="footer-h">Sígueme</h3>
+      <a href={site.instagram} target="_blank" rel="noopener">Instagram {site.instagramHandle}</a>
+      {site.facebook
+        ? <a href={site.facebook} target="_blank" rel="noopener">Facebook</a>
+        : <span class="muted">Facebook (próximamente)</span>}
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span class="muted">© {year} {site.marca}. {site.zona}.</span>
+    <a href="/aviso-de-privacidad" class="muted">Aviso de privacidad</a>
+  </div>
+</footer>
+<style>
+  .footer{border-top:1px solid var(--border);background:var(--surface-2);margin-top:40px}
+  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:30px;padding:48px 20px 28px}
+  .footer-tag{margin-top:12px;max-width:260px}
+  .footer-col{display:flex;flex-direction:column;gap:10px}
+  .footer-h{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:4px}
+  .footer-col a:hover{color:var(--accent)}
+  .footer-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:18px 20px;border-top:1px solid var(--border);font-size:14px}
+  @media(max-width:680px){.footer-grid{grid-template-columns:1fr;gap:24px}}
+</style>

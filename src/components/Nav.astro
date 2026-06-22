@@ -1,0 +1,38 @@
+---
+import { nav, site } from '../data/site';
+import BrandLogo from './BrandLogo.astro';
+const path = Astro.url.pathname;
+const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
+---
+<header class="nav">
+  <div class="container nav-inner">
+    <a href="/" class="brand" aria-label={site.marca}><BrandLogo height={28} /></a>
+    <nav class="nav-links" aria-label="Principal">
+      {nav.map((item) => (
+        <a href={item.href} class:list={['nav-link', { active: isActive(item.href) }]}>{item.label}</a>
+      ))}
+    </nav>
+    <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+  </div>
+</header>
+<style>
+  .nav{position:sticky;top:0;z-index:50;background:rgba(11,15,20,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .nav-links{display:flex;gap:28px}
+  .nav-link{font-size:15px;color:var(--muted);font-weight:500}
+  .nav-link:hover,.nav-link.active{color:var(--text)}
+  .nav-toggle{display:none;background:none;border:none;color:var(--text);font-size:22px;cursor:pointer}
+  @media(max-width:760px){
+    .nav-links{position:fixed;inset:68px 0 auto 0;flex-direction:column;background:var(--surface);padding:18px 20px;gap:16px;border-bottom:1px solid var(--border);transform:translateY(-130%);transition:transform .25s}
+    .nav-links.open{transform:translateY(0)}
+    .nav-toggle{display:block}
+  }
+</style>
+<script>
+  const t = document.querySelector('.nav-toggle');
+  const l = document.querySelector('.nav-links');
+  t?.addEventListener('click', () => {
+    const open = l?.classList.toggle('open');
+    t.setAttribute('aria-expanded', String(!!open));
+  });
+</script>
