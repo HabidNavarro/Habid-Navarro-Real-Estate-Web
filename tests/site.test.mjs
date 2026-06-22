@@ -67,3 +67,12 @@ test('sobre-mi: bio presente y SIN mención de cédula', () => {
   assert.match(h, /asesor inmobiliario en Guadalajara y Zapopan/);
   assert.doesNotMatch(h.toLowerCase(), /c[eé]dula/);
 });
+
+test('contacto: enlaces de WhatsApp, llamada, correo e Instagram', () => {
+  assert.ok(exists('contacto/index.html'), 'falta /contacto');
+  const h = read('contacto/index.html');
+  assert.match(h, /wa\.me\/523921075791/);
+  assert.match(h, /tel:\+523921075791/);
+  assert.match(h, /mailto:habid\.realestate@gmail\.com/);
+  assert.match(h, /instagram\.com\/habid\.realestate/);
+});
