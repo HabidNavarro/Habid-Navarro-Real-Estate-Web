@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site } from '../data/site';
+---
+<BaseLayout title="Sobre mí" description={site.tagline}>
+  <section class="section">
+    <div class="container about">
+      <div class="about-photo card"><img src="/img/placeholder/habid.svg" alt="Habid Navarro" /></div>
+      <div class="about-text">
+        <p class="eyebrow">Sobre mí</p>
+        <h1 class="sec-title">Habid Navarro</h1>
+        <p class="about-tag muted">{site.tagline}</p>
+        <p>Soy Habid Navarro, asesor inmobiliario en Guadalajara y Zapopan. Acompaño a mis clientes a encontrar el terreno o la propiedad correcta para invertir y vivir mejor, con asesoría honesta y cero presión —desde la primera visita hasta la firma.</p>
+        <p>Conozco a fondo las zonas de mayor plusvalía de la Zona Metropolitana de Guadalajara y trabajo con desarrollos de primer nivel como Valle Imperial. Mi compromiso es simple: información clara, trato cercano y una decisión de inversión fácil y segura.</p>
+        <a class="btn btn-primary" href="/contacto">Hablemos</a>
+      </div>
+    </div>
+  </section>
+  <CtaBand />
+</BaseLayout>
+<style>
+  .about{display:grid;grid-template-columns:0.8fr 1.2fr;gap:40px;align-items:start}
+  .about-photo{overflow:hidden;aspect-ratio:4/5}
+  .about-photo img{width:100%;height:100%;object-fit:cover}
+  .about-text{display:flex;flex-direction:column;gap:16px}
+  .about-text p{font-size:17px}
+  .about-tag{font-size:18px;margin-top:-4px}
+  .about-text .btn{align-self:flex-start;margin-top:6px}
+  @media(max-width:760px){.about{grid-template-columns:1fr;gap:24px}.about-photo{max-width:280px}}
+</style>

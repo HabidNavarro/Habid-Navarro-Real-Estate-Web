@@ -60,3 +60,10 @@ test('ficha: datos clave con placeholders, amenidades y descripción', () => {
   assert.match(h, /Amenidades/);
   assert.match(h, /comunidad privada en Zapopan/);
 });
+
+test('sobre-mi: bio presente y SIN mención de cédula', () => {
+  assert.ok(exists('sobre-mi/index.html'), 'falta /sobre-mi');
+  const h = read('sobre-mi/index.html');
+  assert.match(h, /asesor inmobiliario en Guadalajara y Zapopan/);
+  assert.doesNotMatch(h.toLowerCase(), /c[eé]dula/);
+});
