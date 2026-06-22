@@ -1,0 +1,7 @@
+# Visual brainstorming companion (local mockups, not for repo)
+.superpowers/
+
+# Dependencies / build output
+node_modules/
+dist/
+.vite/
