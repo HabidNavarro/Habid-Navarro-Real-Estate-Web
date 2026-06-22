@@ -3,5 +3,6 @@
 
 # Dependencies / build output
 node_modules/
+.astro/
 dist/
 .vite/
