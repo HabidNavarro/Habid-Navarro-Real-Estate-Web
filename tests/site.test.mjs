@@ -44,3 +44,10 @@ test('home: muestra Valle Imperial, amenidades y CTA', () => {
   }
   assert.ok(h.includes('Ver la propiedad') || h.includes('Conoce la propiedad'), 'falta CTA a la propiedad');
 });
+
+test('propiedades: lista con tarjeta a Valle Imperial', () => {
+  assert.ok(exists('propiedades/index.html'), 'falta /propiedades');
+  const h = read('propiedades/index.html');
+  assert.match(h, /href="\/propiedades\/valle-imperial"/);
+  assert.match(h, /En venta/);
+});

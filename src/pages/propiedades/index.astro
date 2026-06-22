@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PropertyCard from '../../components/PropertyCard.astro';
+import { propiedades } from '../../data/propiedades';
+---
+<BaseLayout title="Propiedades" description="Propiedades disponibles con Habid Navarro Bienes Raíces.">
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Propiedades</p>
+      <h1 class="sec-title">Disponibles ahora</h1>
+      <div class="pgrid">
+        {propiedades.map((p) => <PropertyCard propiedad={p} />)}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+<style>
+  .pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:22px;margin-top:32px}
+</style>
