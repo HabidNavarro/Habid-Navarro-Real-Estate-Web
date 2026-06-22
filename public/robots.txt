@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://habidnavarro.com/sitemap-index.xml

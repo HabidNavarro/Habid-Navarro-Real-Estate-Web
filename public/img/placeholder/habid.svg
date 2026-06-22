@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500">
+  <rect width="400" height="500" fill="#11161C"/>
+  <circle cx="200" cy="200" r="70" fill="#1C2630"/>
+  <path d="M90 430c0-70 50-120 110-120s110 50 110 120z" fill="#1C2630"/>
+  <text x="200" y="475" text-anchor="middle" fill="#9AA6B2" font-family="system-ui,sans-serif" font-size="20">Foto por agregar</text>
+</svg>

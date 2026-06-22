@@ -81,3 +81,15 @@ test('aviso de privacidad existe y menciona derechos ARCO', () => {
   assert.ok(exists('aviso-de-privacidad/index.html'), 'falta /aviso-de-privacidad');
   assert.match(read('aviso-de-privacidad/index.html'), /ARCO/);
 });
+
+test('assets: favicon, og e imágenes de muestra presentes en dist', () => {
+  assert.ok(exists('favicon.svg'), 'falta favicon.svg');
+  assert.ok(exists('robots.txt'), 'falta robots.txt');
+  assert.ok(exists('img/og-default.jpg'), 'falta og-default.jpg');
+  assert.ok(exists('img/placeholder/valle-1.jpg'), 'falta valle-1.jpg');
+  assert.ok(exists('img/placeholder/habid.svg'), 'falta habid.svg');
+});
+
+test('sitemap generado', () => {
+  assert.ok(exists('sitemap-index.xml') || exists('sitemap-0.xml'), 'falta sitemap');
+});
