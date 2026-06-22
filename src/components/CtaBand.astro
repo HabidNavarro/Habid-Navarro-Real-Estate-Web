@@ -1,0 +1,26 @@
+---
+import { waLink, site } from '../data/site';
+interface Props { titulo?: string; texto?: string; }
+const {
+  titulo = '¿Te interesa Valle Imperial?',
+  texto = 'Escríbeme y con gusto te comparto toda la información y agendamos una visita.',
+} = Astro.props;
+---
+<section class="cta-band">
+  <div class="container cta-inner">
+    <div>
+      <h2 class="cta-title">{titulo}</h2>
+      <p class="muted">{texto}</p>
+    </div>
+    <div class="cta-actions">
+      <a class="btn btn-wa" href={waLink()} target="_blank" rel="noopener">WhatsApp</a>
+      <a class="btn btn-ghost" href={`tel:${site.telefono}`}>Llamar</a>
+    </div>
+  </div>
+</section>
+<style>
+  .cta-band{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:linear-gradient(180deg,var(--surface),var(--surface-2))}
+  .cta-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:48px 20px;flex-wrap:wrap}
+  .cta-title{font-size:clamp(24px,3.5vw,32px)}
+  .cta-actions{display:flex;gap:12px;flex-wrap:wrap}
+</style>

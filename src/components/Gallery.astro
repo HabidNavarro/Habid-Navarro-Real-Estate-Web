@@ -1,0 +1,19 @@
+---
+interface Props { imagenes: string[]; alt: string; }
+const { imagenes, alt } = Astro.props;
+---
+<div class="gallery">
+  {imagenes.map((src, i) => (
+    <a href={src} class={`g-item ${i === 0 ? 'g-lead' : ''}`} target="_blank" rel="noopener" aria-label={`${alt} — foto ${i + 1}`}>
+      <img src={src} alt={`${alt} — foto ${i + 1}`} loading="lazy" />
+    </a>
+  ))}
+</div>
+<style>
+  .gallery{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:180px;gap:12px}
+  .g-item{overflow:hidden;border-radius:12px;border:1px solid var(--border)}
+  .g-item img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+  .g-item:hover img{transform:scale(1.05)}
+  .g-lead{grid-column:span 2;grid-row:span 2}
+  @media(max-width:680px){.gallery{grid-template-columns:repeat(2,1fr);grid-auto-rows:140px}.g-lead{grid-column:span 2;grid-row:span 1}}
+</style>

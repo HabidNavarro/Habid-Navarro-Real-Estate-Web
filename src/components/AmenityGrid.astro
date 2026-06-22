@@ -1,0 +1,28 @@
+---
+interface Props { amenidades: string[]; }
+const { amenidades } = Astro.props;
+function icon(a: string): string {
+  const k = a.toLowerCase();
+  if (k.includes('alberca')) return '🏊';
+  if (k.includes('cine')) return '🎬';
+  if (k.includes('salón') || k.includes('salon') || k.includes('evento')) return '🎉';
+  if (k.includes('verde') || k.includes('área') || k.includes('area')) return '🌳';
+  if (k.includes('segur') || k.includes('caseta')) return '🛡️';
+  if (k.includes('gim')) return '🏋️';
+  return '✨';
+}
+---
+<div class="amenities">
+  {amenidades.map((a) => (
+    <div class="amenity card">
+      <span class="amenity-ico" aria-hidden="true">{icon(a)}</span>
+      <span class="amenity-name">{a}</span>
+    </div>
+  ))}
+</div>
+<style>
+  .amenities{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}
+  .amenity{padding:18px;display:flex;align-items:center;gap:12px}
+  .amenity-ico{font-size:24px}
+  .amenity-name{font-weight:500}
+</style>

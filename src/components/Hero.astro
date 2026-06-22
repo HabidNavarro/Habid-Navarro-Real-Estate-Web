@@ -1,0 +1,25 @@
+---
+import { propiedadDestacada } from '../data/propiedades';
+import { waLink } from '../data/site';
+const p = propiedadDestacada;
+---
+<section class="hero">
+  <div class="hero-bg" style={`background-image:linear-gradient(90deg,var(--bg) 32%,rgba(11,15,20,.4)),url(${p.galeria[0]})`}></div>
+  <div class="container hero-inner">
+    <p class="eyebrow">Último terreno a la venta · {p.municipio}</p>
+    <h1 class="hero-title grad-text">{p.nombre}</h1>
+    <p class="hero-sub muted">{p.resumen}</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href={`/propiedades/${p.slug}`}>Ver la propiedad</a>
+      <a class="btn btn-wa" href={waLink()} target="_blank" rel="noopener">Agendar una visita</a>
+    </div>
+  </div>
+</section>
+<style>
+  .hero{position:relative;min-height:78vh;display:flex;align-items:center;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;background-size:cover;background-position:center right;z-index:0}
+  .hero-inner{position:relative;z-index:1;padding-block:60px}
+  .hero-title{font-size:clamp(44px,9vw,92px);font-weight:800;margin:10px 0;letter-spacing:-.02em}
+  .hero-sub{max-width:440px;font-size:18px}
+  .hero-cta{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap}
+</style>

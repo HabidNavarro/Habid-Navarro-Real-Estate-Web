@@ -1,0 +1,27 @@
+---
+interface Props { precio: string; superficie: string; tipo: string; ubicacion: string; municipio: string; }
+const { precio, superficie, tipo, ubicacion, municipio } = Astro.props;
+const PEND = '****';
+const items = [
+  { label: 'Precio', value: precio },
+  { label: 'Superficie', value: superficie === PEND ? PEND : `${superficie} m²` },
+  { label: 'Tipo', value: tipo },
+  { label: 'Ubicación', value: ubicacion === PEND ? PEND : `${ubicacion}, ${municipio}` },
+];
+---
+<div class="keyfacts">
+  {items.map((i) => (
+    <div class="kf card">
+      <span class="kf-label muted">{i.label}</span>
+      <span class={`kf-value ${i.value === PEND ? 'kf-pend' : ''}`}>{i.value}</span>
+    </div>
+  ))}
+</div>
+<style>
+  .keyfacts{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .kf{padding:18px;display:flex;flex-direction:column;gap:6px}
+  .kf-label{font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+  .kf-value{font-family:var(--font-head);font-size:20px;font-weight:700}
+  .kf-pend{color:var(--accent);opacity:.85}
+  @media(max-width:680px){.keyfacts{grid-template-columns:repeat(2,1fr)}}
+</style>
