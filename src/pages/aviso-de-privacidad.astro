@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+---
+<BaseLayout title="Aviso de privacidad" description="Aviso de privacidad de Habid Navarro Bienes Raíces.">
+  <section class="section">
+    <div class="container legal">
+      <h1 class="sec-title">Aviso de privacidad</h1>
+      <p>En cumplimiento con la Ley Federal de Protección de Datos Personales en Posesión de los Particulares, {site.marca} ("el Responsable") informa lo siguiente:</p>
+      <h2 class="sub-h">Datos que recabamos</h2>
+      <p>Cuando nos contactas por WhatsApp, llamada o correo, podemos recabar tu nombre, teléfono y correo electrónico, con la única finalidad de atender tu solicitud y brindarte información sobre propiedades.</p>
+      <h2 class="sub-h">Uso de tus datos</h2>
+      <p>Tus datos se utilizan exclusivamente para responder tu consulta y darte seguimiento. No los compartimos ni vendemos a terceros.</p>
+      <h2 class="sub-h">Tus derechos (ARCO)</h2>
+      <p>Puedes solicitar el acceso, rectificación, cancelación u oposición al uso de tus datos escribiendo a <a class="lnk" href={`mailto:${site.email}`}>{site.email}</a>.</p>
+      <p class="muted upd">Última actualización: junio de 2026.</p>
+    </div>
+  </section>
+</BaseLayout>
+<style>
+  .legal{max-width:760px}
+  .legal p{font-size:16px;margin-top:8px}
+  .legal .lnk{color:var(--accent)}
+  .upd{margin-top:28px}
+</style>

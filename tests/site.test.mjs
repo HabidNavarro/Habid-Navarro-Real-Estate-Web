@@ -76,3 +76,8 @@ test('contacto: enlaces de WhatsApp, llamada, correo e Instagram', () => {
   assert.match(h, /mailto:habid\.realestate@gmail\.com/);
   assert.match(h, /instagram\.com\/habid\.realestate/);
 });
+
+test('aviso de privacidad existe y menciona derechos ARCO', () => {
+  assert.ok(exists('aviso-de-privacidad/index.html'), 'falta /aviso-de-privacidad');
+  assert.match(read('aviso-de-privacidad/index.html'), /ARCO/);
+});
