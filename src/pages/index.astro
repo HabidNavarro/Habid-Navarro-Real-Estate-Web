@@ -1,7 +1,22 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import AmenityGrid from '../components/AmenityGrid.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { propiedadDestacada } from '../data/propiedades';
 import { site } from '../data/site';
+const p = propiedadDestacada;
 ---
-<BaseLayout title={site.marca}>
-  <section class="section"><div class="container"><h1 class="sec-title">Habid Navarro</h1></div></section>
+<BaseLayout title={site.marca} description={`${p.nombre} — ${p.resumen}`}>
+  <Hero />
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Por qué Valle Imperial</p>
+      <h2 class="sec-title">Una comunidad pensada para vivir mejor</h2>
+      <p class="muted sec-lead">En una de las zonas con mejor plusvalía de Zapopan, Valle Imperial combina amenidades de primer nivel, seguridad y áreas verdes. Esta es tu oportunidad de adquirir el último terreno disponible.</p>
+      <div style="margin-top:32px"><AmenityGrid amenidades={p.amenidades} /></div>
+      <div style="margin-top:36px"><a class="btn btn-primary" href={`/propiedades/${p.slug}`}>Conoce la propiedad</a></div>
+    </div>
+  </section>
+  <CtaBand />
 </BaseLayout>

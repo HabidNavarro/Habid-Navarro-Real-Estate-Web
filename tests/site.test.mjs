@@ -35,3 +35,12 @@ test('home: footer con teléfono, correo y aviso de privacidad', () => {
   assert.match(h, /mailto:habid\.realestate@gmail\.com/);
   assert.match(h, /Aviso de privacidad/);
 });
+
+test('home: muestra Valle Imperial, amenidades y CTA', () => {
+  const h = read('index.html');
+  assert.match(h, /Valle Imperial/);
+  for (const a of ['Cinemex', 'Alberca', 'Salón de eventos', 'Áreas verdes']) {
+    assert.ok(h.includes(a), `falta amenidad ${a}`);
+  }
+  assert.ok(h.includes('Ver la propiedad') || h.includes('Conoce la propiedad'), 'falta CTA a la propiedad');
+});
