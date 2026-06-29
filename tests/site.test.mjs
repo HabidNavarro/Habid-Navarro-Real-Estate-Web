@@ -18,11 +18,12 @@ test('home: lang es y etiquetas OG', () => {
   assert.match(h, /name="description"/);
 });
 
-test('home: navegación con las 4 secciones', () => {
+test('home: navegación visible (Sobre mí oculta)', () => {
   const h = read('index.html');
-  for (const label of ['Inicio', 'Propiedades', 'Sobre mí', 'Contacto']) {
+  for (const label of ['Inicio', 'Propiedades', 'Contacto']) {
     assert.ok(h.includes(label), `falta nav "${label}"`);
   }
+  assert.ok(!h.includes('href="/sobre-mi"'), '"Sobre mí" no debe enlazarse en la navegación');
 });
 
 test('home: botón flotante de WhatsApp con número correcto', () => {

@@ -1,0 +1,42 @@
+---
+// Custom line-icon set (24×24, stroke = currentColor) — coherent with the
+// clean, light, blue aesthetic of the site. No emojis.
+interface Props { name: string; size?: number; class?: string; }
+const { name, size = 22, class: cls = '' } = Astro.props;
+---
+<svg
+  class:list={['icon', cls]}
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.7"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+>
+  {name === 'bed' && (<><path d="M3 18v-5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5" /><path d="M3 18h18" /><path d="M3 18v2M21 18v2" /><path d="M7 11V9a1 1 0 0 1 1-1h3v3" /></>)}
+  {name === 'bath' && (<><path d="M4 12V6a2 2 0 0 1 4 0" /><path d="M3 12h18v3a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4z" /><path d="M6 19l-1 2M18 19l1 2" /><path d="M6.5 6h.01" /></>)}
+  {name === 'kitchen' && (<><path d="M6 2v7a2 2 0 0 1-2 2 2 2 0 0 1-2-2V2" /><path d="M4 11v11" /><path d="M18 2a3 3 0 0 0-3 3v6h3" /><path d="M18 2v20" /></>)}
+  {name === 'book' && (<><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" /></>)}
+  {name === 'tv' && (<><rect x="2" y="7" width="20" height="14" rx="2" /><path d="M17 3l-5 4-5-4" /></>)}
+  {name === 'wash' && (<><rect x="5" y="2.5" width="14" height="19" rx="2" /><circle cx="12" cy="13" r="4" /><path d="M8 6h.01M11 6h.01" /></>)}
+  {name === 'car' && (<><path d="M5 13l1.6-4.3A2 2 0 0 1 8.5 7.4h7a2 2 0 0 1 1.9 1.3L19 13" /><path d="M4 13h16v4H4z" /><circle cx="7.5" cy="17" r="1.4" /><circle cx="16.5" cy="17" r="1.4" /></>)}
+  {name === 'structure' && (<><rect x="4" y="3" width="16" height="18" rx="1" /><path d="M9 21v-7h6v7" /><path d="M8 7h.01M12 7h.01M16 7h.01M8 11h.01M16 11h.01" /></>)}
+  {name === 'levels' && (<><path d="M12 3l9 4-9 4-9-4 9-4z" /><path d="M3 12l9 4 9-4" /><path d="M3 17l9 4 9-4" /></>)}
+  {name === 'drop' && (<><path d="M12 3l5.5 5.7a7.5 7.5 0 1 1-11 0z" /></>)}
+  {name === 'shield' && (<><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><path d="M9.5 12l1.8 1.8 3.5-3.6" /></>)}
+  {name === 'patio' && (<><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 9h18M9 9v12" /></>)}
+  {name === 'tree' && (<><path d="M12 22v-5" /><path d="M12 17a5 5 0 0 0 4.6-7 4 4 0 0 0-7.6-1.2A4 4 0 0 0 7.4 10 5 5 0 0 0 12 17z" /></>)}
+  {name === 'mountain' && (<><path d="M3 20l6-10 4 6 2.5-3.5L21 20z" /></>)}
+  {name === 'sun' && (<><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.4 1.4M17.6 17.6L19 19M19 5l-1.4 1.4M6.4 17.6L5 19" /></>)}
+  {name === 'box' && (<><path d="M3 7l9-4 9 4v10l-9 4-9-4z" /><path d="M3 7l9 4 9-4M12 11v10" /></>)}
+  {name === 'pool' && (<><path d="M2 13c1.6 0 1.6-1.6 3.3-1.6S6.9 13 8.5 13s1.6-1.6 3.3-1.6S13.4 13 15 13s1.6-1.6 3.3-1.6S19.9 13 21.5 13" /><path d="M2 18c1.6 0 1.6-1.6 3.3-1.6S6.9 18 8.5 18s1.6-1.6 3.3-1.6S13.4 18 15 18s1.6-1.6 3.3-1.6S19.9 18 21.5 18" /><path d="M7 11V5a2 2 0 0 1 4 0v2" /></>)}
+  {name === 'check' && (<><circle cx="12" cy="12" r="9" /><path d="M8.5 12.5l2.5 2.5 4.5-5" /></>)}
+  {name === 'pin' && (<><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" /></>)}
+  {name === 'whatsapp' && (<><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.4L3 21l2.2-5.5A8.4 8.4 0 1 1 21 11.5z" /></>)}
+  {name === 'phone' && (<><path d="M22 16.9v2.6a2 2 0 0 1-2.2 2 19.6 19.6 0 0 1-8.5-3 19.3 19.3 0 0 1-6-6 19.6 19.6 0 0 1-3-8.6A2 2 0 0 1 4.1 2h2.6a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L7.6 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z" /></>)}
+  {name === 'mail' && (<><rect x="2" y="4" width="20" height="16" rx="2" /><path d="M3 6.5l9 6 9-6" /></>)}
+  {name === 'instagram' && (<><rect x="2.5" y="2.5" width="19" height="19" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="0.9" fill="currentColor" stroke="none" /></>)}
+</svg>

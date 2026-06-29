@@ -17,8 +17,9 @@ export const site = {
 export const nav = [
   { href: '/', label: 'Inicio' },
   { href: '/propiedades', label: 'Propiedades' },
-  { href: '/sobre-mi', label: 'Sobre mí' },
   { href: '/contacto', label: 'Contacto' },
+  // 'Sobre mí' (/sobre-mi) oculta temporalmente: la página existe pero no se enlaza
+  // hasta que haya foto de Habid. Re-agregar aquí para volver a mostrarla.
 ];
 
 export function waLink(mensaje: string = site.whatsappMensaje): string {
