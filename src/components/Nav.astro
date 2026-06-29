@@ -1,5 +1,5 @@
 ---
-import { nav, site } from '../data/site';
+import { nav, site, waLink } from '../data/site';
 import BrandLogo from './BrandLogo.astro';
 const path = Astro.url.pathname;
 const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
@@ -12,19 +12,30 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
         <a href={item.href} class:list={['nav-link', { active: isActive(item.href) }]}>{item.label}</a>
       ))}
     </nav>
-    <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    <div class="nav-end">
+      <a class="nav-wa" href={waLink()} target="_blank" rel="noopener">WhatsApp</a>
+      <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    </div>
   </div>
 </header>
 <style>
-  .nav{position:sticky;top:0;z-index:50;background:rgba(11,15,20,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
-  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
-  .nav-links{display:flex;gap:28px}
-  .nav-link{font-size:15px;color:var(--muted);font-weight:500}
-  .nav-link:hover,.nav-link.active{color:var(--text)}
-  .nav-toggle{display:none;background:none;border:none;color:var(--text);font-size:22px;cursor:pointer}
+  .nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.78);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--border)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px;gap:20px}
+  .nav-links{display:flex;gap:32px}
+  .nav-link{position:relative;font-size:15px;color:var(--muted);font-weight:400;padding:6px 0;transition:color .18s}
+  .nav-link::after{content:"";position:absolute;left:0;right:100%;bottom:-1px;height:1.5px;background:var(--accent);transition:right .25s ease}
+  .nav-link:hover{color:var(--text)}
+  .nav-link.active{color:var(--text)}
+  .nav-link.active::after{right:0}
+  .nav-end{display:flex;align-items:center;gap:12px}
+  .nav-wa{font-size:14px;font-weight:500;color:#fff;background:var(--accent);padding:8px 16px;border-radius:980px;transition:background .18s ease}
+  .nav-wa:hover{background:var(--accent-2)}
+  .nav-toggle{display:none;background:none;border:none;color:var(--text);font-size:22px;cursor:pointer;line-height:1}
   @media(max-width:760px){
-    .nav-links{position:fixed;inset:68px 0 auto 0;flex-direction:column;background:var(--surface);padding:18px 20px;gap:16px;border-bottom:1px solid var(--border);transform:translateY(-130%);transition:transform .25s}
+    .nav-links{position:fixed;inset:64px 0 auto 0;flex-direction:column;background:rgba(255,255,255,.96);backdrop-filter:saturate(180%) blur(20px);padding:20px 22px;gap:18px;border-bottom:1px solid var(--border);transform:translateY(-135%);transition:transform .28s ease}
     .nav-links.open{transform:translateY(0)}
+    .nav-link::after{display:none}
+    .nav-wa{display:none}
     .nav-toggle{display:block}
   }
 </style>

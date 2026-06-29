@@ -1,28 +1,67 @@
 :root{
-  --bg:#0B0F14; --surface:#11161C; --surface-2:#0E141A; --border:#1C2630;
-  --text:#E7EDF3; --muted:#9AA6B2; --accent:#3BB5E8; --accent-2:#2B7CC4;
-  --grad:linear-gradient(90deg,#2B7CC4,#3BB5E8); --wa:#25D366;
-  --maxw:1120px; --radius:14px;
-  --font-head:'Sora',system-ui,sans-serif; --font-body:'Inter',system-ui,sans-serif;
+  /* Claro premium — estilo Apple con el azul de la marca */
+  --bg:#ffffff; --surface:#f5f5f7; --surface-2:#fbfbfd;
+  --border:#e6e6ea; --line:#d2d2d7;
+  --text:#1d1d1f; --muted:#6e6e73;
+  --accent:#2B7CC4; --accent-soft:#3BB5E8; --accent-2:#1f6fb5; --accent-deep:#155a96;
+  --grad:linear-gradient(115deg,#2B7CC4,#3BB5E8);
+  --wa:#25D366;
+  --shadow:0 12px 40px rgba(20,40,70,.10);
+  --shadow-sm:0 4px 18px rgba(20,40,70,.07);
+  --maxw:1080px; --radius:18px;
+  --font-head:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  --font-body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  --font-mono:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased}
+body{
+  background:var(--bg);color:var(--text);font-family:var(--font-body);
+  font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+::selection{background:rgba(43,124,196,.18);color:var(--text)}
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
-h1,h2,h3{font-family:var(--font-head);line-height:1.12;font-weight:700}
+h1,h2,h3{font-family:var(--font-head);line-height:1.07;font-weight:600;letter-spacing:-.021em}
 main{min-height:60vh}
-.container{max-width:var(--maxw);margin-inline:auto;padding-inline:20px}
-.section{padding:72px 0}
-.eyebrow{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:600}
-.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+/* Layout */
+.container{max-width:var(--maxw);margin-inline:auto;padding-inline:22px}
+.section{padding:96px 0}
+
+/* Type utilities */
+.eyebrow{font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.mono{font-family:var(--font-body)}
+.grad-text{color:var(--accent)}
 .muted{color:var(--muted)}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius)}
-.sec-title{font-size:clamp(28px,4.5vw,44px);margin-top:10px}
-.sec-lead{max-width:640px;margin-top:14px;font-size:17px}
-.sub-h{font-family:var(--font-head);font-size:24px;margin:44px 0 18px}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 24px;border-radius:10px;font-weight:600;font-size:15px;transition:transform .15s,opacity .15s;cursor:pointer;border:none;font-family:var(--font-body)}
-.btn:hover{transform:translateY(-2px)}
-.btn-primary{background:var(--grad);color:#fff}
-.btn-ghost{background:transparent;color:var(--text);border:1px solid var(--border)}
-.btn-wa{background:var(--wa);color:#06310f}
+.sec-title{font-size:clamp(32px,5vw,54px);margin-top:12px;font-weight:600;letter-spacing:-.025em}
+.sec-lead{max-width:660px;margin-top:16px;font-size:19px;color:var(--muted);line-height:1.45}
+.sub-h{font-family:var(--font-head);font-size:27px;font-weight:600;letter-spacing:-.02em;margin:52px 0 20px}
+
+/* Surfaces */
+.card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius)}
+
+/* Buttons — Apple pill */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:980px;font-weight:500;font-size:16px;transition:background .2s ease,transform .2s ease,box-shadow .2s ease,border-color .2s ease,color .2s ease;cursor:pointer;border:none;font-family:var(--font-body)}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent-2);transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:var(--accent);border:1px solid var(--line)}
+.btn-ghost:hover{border-color:var(--accent);background:rgba(43,124,196,.06)}
+.btn-wa{background:var(--wa);color:#fff}
+.btn-wa:hover{filter:brightness(.96);transform:translateY(-1px)}
+
+/* Motion — load rise (above the fold) */
+@keyframes riseIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.rise{opacity:0;animation:riseIn .8s cubic-bezier(.2,.7,.2,1) forwards}
+.d1{animation-delay:.05s}.d2{animation-delay:.14s}.d3{animation-delay:.24s}.d4{animation-delay:.34s}
+
+/* Motion — scroll reveal (gated behind .js so content is never hidden without JS) */
+.reveal{transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.js .reveal{opacity:0;transform:translateY(20px)}
+.js .reveal.in{opacity:1;transform:none}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .rise,.js .reveal{opacity:1!important;transform:none!important;animation:none!important;transition:none!important}
+}

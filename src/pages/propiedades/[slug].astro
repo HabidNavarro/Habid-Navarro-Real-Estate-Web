@@ -4,6 +4,7 @@ import KeyFacts from '../../components/KeyFacts.astro';
 import AmenityGrid from '../../components/AmenityGrid.astro';
 import Gallery from '../../components/Gallery.astro';
 import CtaBand from '../../components/CtaBand.astro';
+import EstadoBadge from '../../components/EstadoBadge.astro';
 import { propiedades, type Propiedad } from '../../data/propiedades';
 
 export function getStaticPaths() {
@@ -15,25 +16,34 @@ const { p } = Astro.props;
 <BaseLayout title={p.nombre} description={p.resumen} image={p.galeria[0]}>
   <section class="section">
     <div class="container">
-      <p class="eyebrow">{p.estado} · {p.municipio}, {p.entidad}</p>
+      <div class="detail-top">
+        <EstadoBadge estado={p.estado} />
+        <span class="detail-place">{p.municipio}, {p.entidad}</span>
+      </div>
       <h1 class="sec-title">{p.nombre}</h1>
-      <div style="margin-top:24px"><Gallery imagenes={p.galeria} alt={p.nombre} /></div>
-      <div style="margin-top:28px"><KeyFacts precio={p.precio} superficie={p.superficie} tipo={p.tipo} ubicacion={p.ubicacion} municipio={p.municipio} /></div>
-      <div class="detail-desc">
+      <p class="detail-spec mono">{p.superficie} m² &nbsp;/&nbsp; {p.tipo}</p>
+      <div class="reveal" style="margin-top:26px"><Gallery imagenes={p.galeria} alt={p.nombre} /></div>
+      <div class="reveal" style="margin-top:36px"><KeyFacts precio={p.precio} superficie={p.superficie} tipo={p.tipo} ubicacion={p.ubicacion} municipio={p.municipio} /></div>
+      <div class="detail-desc reveal">
         {p.descripcion.map((par) => <p>{par}</p>)}
       </div>
-      <h2 class="sub-h">Amenidades</h2>
-      <AmenityGrid amenidades={p.amenidades} />
+      <div class="reveal">
+        <h2 class="sub-h">Amenidades</h2>
+        <AmenityGrid amenidades={p.amenidades} />
+      </div>
       {p.mapaEmbed
-        ? <div class="mapwrap" set:html={p.mapaEmbed}></div>
-        : <p class="muted map-pending">📍 Ubicación exacta y mapa: por actualizar.</p>}
+        ? <div class="mapwrap reveal" set:html={p.mapaEmbed}></div>
+        : <p class="muted map-pending reveal">📍 Ubicación exacta y mapa: por actualizar.</p>}
     </div>
   </section>
   <CtaBand titulo={`¿Quieres más información de ${p.nombre}?`} />
 </BaseLayout>
 <style>
-  .detail-desc{max-width:720px;margin-top:30px;display:flex;flex-direction:column;gap:14px;font-size:17px}
-  .map-pending{margin-top:24px;padding:18px;border:1px dashed var(--border);border-radius:12px}
-  .mapwrap{margin-top:24px;border-radius:12px;overflow:hidden}
-  .mapwrap :global(iframe){width:100%;min-height:360px;border:0;display:block}
+  .detail-top{display:flex;align-items:center;gap:13px;margin-bottom:10px}
+  .detail-place{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500}
+  .detail-spec{margin-top:14px;font-size:17px;color:var(--accent);font-weight:500}
+  .detail-desc{max-width:720px;margin-top:44px;display:flex;flex-direction:column;gap:18px;font-size:18px;line-height:1.55;color:#424245}
+  .map-pending{margin-top:24px;padding:18px;border:1px dashed var(--line);border-radius:14px;color:var(--muted)}
+  .mapwrap{margin-top:24px;border-radius:18px;overflow:hidden;border:1px solid var(--border)}
+  .mapwrap :global(iframe){width:100%;min-height:420px;border:0;display:block}
 </style>

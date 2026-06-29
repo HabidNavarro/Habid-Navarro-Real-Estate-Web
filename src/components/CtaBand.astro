@@ -2,7 +2,7 @@
 import { waLink, site } from '../data/site';
 interface Props { titulo?: string; texto?: string; }
 const {
-  titulo = '¿Te interesa Valle Imperial?',
+  titulo = '¿Te interesa esta casa en Ocotlán?',
   texto = 'Escríbeme y con gusto te comparto toda la información y agendamos una visita.',
 } = Astro.props;
 ---
@@ -19,8 +19,9 @@ const {
   </div>
 </section>
 <style>
-  .cta-band{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:linear-gradient(180deg,var(--surface),var(--surface-2))}
-  .cta-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:48px 20px;flex-wrap:wrap}
-  .cta-title{font-size:clamp(24px,3.5vw,32px)}
-  .cta-actions{display:flex;gap:12px;flex-wrap:wrap}
+  .cta-band{background:var(--surface);border-top:1px solid var(--border)}
+  .cta-inner{display:flex;flex-direction:column;align-items:center;text-align:center;gap:26px;padding:84px 22px}
+  .cta-title{font-size:clamp(28px,4.2vw,44px);font-weight:600;letter-spacing:-.025em}
+  .cta-inner > div > .muted{margin-top:10px;font-size:19px;max-width:540px}
+  .cta-actions{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
 </style>

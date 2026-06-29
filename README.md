@@ -21,12 +21,14 @@ npm run preview  # sirve dist/ para revisión
 ## Cómo actualizar contenido
 
 - **Datos de la propiedad (precio, m², ubicación, tipo, mapa):** edita
-  `src/data/propiedades.ts` y reemplaza los valores `****` por los reales. Para el
-  mapa, pega el `<iframe>` de Google Maps en el campo `mapaEmbed`.
-- **Fotos:** reemplaza los archivos en `public/img/placeholder/` por fotos reales
-  (mismos nombres) o agrega nuevas y actualiza `galeria` en `propiedades.ts`.
-  Cambia también `public/img/og-default.jpg` (1200×630) por una buena foto para
-  compartir en redes/WhatsApp.
+  `src/data/propiedades.ts`. Los campos con valor `****` siguen pendientes (p. ej.
+  la ubicación exacta). Para el mapa, pega el `<iframe>` de Google Maps en el campo
+  `mapaEmbed`.
+- **Fotos:** las fotos reales viven en `public/img/ocotlan/` (`ocotlan-1.jpg` …
+  `ocotlan-11.jpg`); reemplázalas o agrega nuevas y actualiza `galeria` en
+  `propiedades.ts`. La primera de `galeria` es la portada (hero, tarjeta y compartir).
+  Cambia también `public/img/og-default.jpg` por una buena foto para compartir en
+  redes/WhatsApp.
 - **Foto de Habid:** reemplaza `public/img/placeholder/habid.svg` por una foto real
   (por ejemplo `habid.jpg`) y actualiza la ruta en `src/pages/sobre-mi.astro`.
 - **Contacto / redes:** edita `src/data/site.ts`. Cuando tengas la URL de tu página

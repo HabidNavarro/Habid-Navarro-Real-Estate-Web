@@ -17,20 +17,18 @@ Guía rápida y sin tecnicismos: qué tienes, qué falta y cómo actualizarlo.
 - No hay otros costos.
 
 ## 📄 Qué incluye el sitio
-5 secciones: **Inicio · Propiedades · Ficha de Valle Imperial · Sobre mí · Contacto**, más **Aviso de privacidad**.
+5 secciones: **Inicio · Propiedades · Ficha de la Casa en Ocotlán · Sobre mí · Contacto**, más **Aviso de privacidad**.
 Diseño "Oscuro Premium", **botón flotante de WhatsApp**, optimizado para celular, y preparado para verse bien al compartir el link en WhatsApp/Facebook.
 
-## ✅ Lo que falta por completar
-Los datos del terreno aparecen como `****` **a propósito**, para recordarte qué llenar. Cuando los tengas, **me los mandas por aquí y yo los actualizo**:
+La propiedad real publicada es la **Casa en Ocotlán** ($2,500,000), con **fotos reales**, dirección (Islas Vírgenes 284-C), **mapa de Google** y su descripción completa.
 
-1. **Precio** de Valle Imperial
-2. **Superficie** (m²)
-3. **Tipo** (terreno / si incluye construcción)
-4. **Ubicación exacta** o nombre del fraccionamiento
-5. **Mapa** de Google Maps (me pasas el enlace)
-6. **Fotos reales** del terreno y del desarrollo *(ahora hay fotos de muestra elegantes)*
-7. **Tu foto** para la sección "Sobre mí"
-8. **URL de tu página de Facebook**
+> **Catálogo con escasez:** además de tu casa en Ocotlán (la única **En venta**), el catálogo muestra unas casas de **demostración** marcadas como *Apartada* (amarillo) o *Vendida* (rojo), con fotos de stock libres de derechos. Sirven para dar sensación de movimiento. Avísame y las quito o las cambio cuando tengas inventario real.
+
+## ✅ Lo que falta por completar
+Ya quedaron la dirección y el mapa. Lo que aún conviene completar —cuando lo tengas, **me lo mandas por aquí y yo lo actualizo**:
+
+1. **Tu foto** para la sección "Sobre mí"
+2. **URL de tu página de Facebook**
 
 ## 🔄 Cómo actualizar el sitio
 Tú **no necesitas tocar nada técnico**. Solo **mándame los datos o fotos por aquí** y yo:
@@ -52,4 +50,4 @@ Tú **no necesitas tocar nada técnico**. Solo **mándame los datos o fotos por 
 - Diseño y plan completos: carpeta **`docs/superpowers/`**.
 
 ---
-*Última actualización: 22 de junio de 2026.*
+*Última actualización: 29 de junio de 2026.*

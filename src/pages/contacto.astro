@@ -8,7 +8,7 @@ import { site, waLink } from '../data/site';
       <p class="eyebrow">Contacto</p>
       <h1 class="sec-title">Hablemos</h1>
       <p class="muted sec-lead">Estoy para asesorarte. Escríbeme por el medio que prefieras y te respondo a la brevedad.</p>
-      <div class="contact-grid">
+      <div class="contact-grid reveal">
         <a class="contact-card card" href={waLink()} target="_blank" rel="noopener">
           <span class="cc-ico">🟢</span><span class="cc-label">WhatsApp</span><span class="muted">{site.telefonoDisplay}</span>
         </a>
@@ -27,10 +27,11 @@ import { site, waLink } from '../data/site';
   </section>
 </BaseLayout>
 <style>
-  .contact-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-top:32px}
-  .contact-card{padding:26px 22px;display:flex;flex-direction:column;gap:6px;transition:transform .15s,border-color .15s}
-  .contact-card:hover{transform:translateY(-3px);border-color:var(--accent-2)}
-  .cc-ico{font-size:28px}
-  .cc-label{font-family:var(--font-head);font-weight:700;font-size:18px}
-  .zona{margin-top:28px}
+  .contact-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-top:34px}
+  .contact-card{padding:26px 22px;display:flex;flex-direction:column;gap:7px;transition:transform .18s ease,border-color .18s ease}
+  .contact-card:hover{transform:translateY(-4px);border-color:var(--accent)}
+  .cc-ico{font-size:26px}
+  .cc-label{font-weight:600;font-size:17px}
+  .contact-card .muted{font-family:var(--font-mono);font-size:13px;letter-spacing:.02em}
+  .zona{margin-top:30px;font-family:var(--font-mono);font-size:13px;letter-spacing:.04em}
 </style>

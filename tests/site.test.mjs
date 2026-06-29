@@ -36,35 +36,36 @@ test('home: footer con teléfono, correo y aviso de privacidad', () => {
   assert.match(h, /Aviso de privacidad/);
 });
 
-test('home: muestra Valle Imperial, amenidades y CTA', () => {
+test('home: hero minimal que lleva al catálogo', () => {
   const h = read('index.html');
-  assert.match(h, /Valle Imperial/);
-  for (const a of ['Cinemex', 'Alberca', 'Salón de eventos', 'Áreas verdes']) {
-    assert.ok(h.includes(a), `falta amenidad ${a}`);
-  }
-  assert.ok(h.includes('Ver la propiedad') || h.includes('Conoce la propiedad'), 'falta CTA a la propiedad');
+  assert.match(h, /href="\/propiedades"/);
+  assert.ok(h.includes('Ver propiedades'), 'falta CTA "Ver propiedades"');
+  assert.ok(!h.includes('Estructura de concreto colado'), 'el home no debe listar amenidades');
 });
 
-test('propiedades: lista con tarjeta a Valle Imperial', () => {
+test('propiedades: catálogo con varias casas y estados', () => {
   assert.ok(exists('propiedades/index.html'), 'falta /propiedades');
   const h = read('propiedades/index.html');
-  assert.match(h, /href="\/propiedades\/valle-imperial"/);
-  assert.match(h, /En venta/);
+  assert.match(h, /href="\/propiedades\/casa-ocotlan"/);
+  assert.match(h, /href="\/propiedades\/casa-zapopan"/);
+  for (const e of ['En venta', 'Apartada', 'Vendida']) {
+    assert.ok(h.includes(e), `falta el estado "${e}" en el catálogo`);
+  }
 });
 
-test('ficha: datos clave con placeholders, amenidades y descripción', () => {
-  assert.ok(exists('propiedades/valle-imperial/index.html'), 'falta la ficha');
-  const h = read('propiedades/valle-imperial/index.html');
-  assert.ok(h.includes('****'), 'deben verse los datos pendientes ****');
+test('ficha: datos clave, amenidades y descripción', () => {
+  assert.ok(exists('propiedades/casa-ocotlan/index.html'), 'falta la ficha');
+  const h = read('propiedades/casa-ocotlan/index.html');
+  assert.match(h, /\$2,500,000/);
   assert.match(h, /Precio/);
   assert.match(h, /Amenidades/);
-  assert.match(h, /comunidad privada en Zapopan/);
+  assert.match(h, /concreto colado/);
 });
 
 test('sobre-mi: bio presente y SIN mención de cédula', () => {
   assert.ok(exists('sobre-mi/index.html'), 'falta /sobre-mi');
   const h = read('sobre-mi/index.html');
-  assert.match(h, /asesor inmobiliario en Guadalajara y Zapopan/);
+  assert.match(h, /asesor inmobiliario en Jalisco/);
   assert.doesNotMatch(h.toLowerCase(), /c[eé]dula/);
 });
 
@@ -86,7 +87,7 @@ test('assets: favicon, og e imágenes de muestra presentes en dist', () => {
   assert.ok(exists('favicon.svg'), 'falta favicon.svg');
   assert.ok(exists('robots.txt'), 'falta robots.txt');
   assert.ok(exists('img/og-default.jpg'), 'falta og-default.jpg');
-  assert.ok(exists('img/placeholder/valle-1.jpg'), 'falta valle-1.jpg');
+  assert.ok(exists('img/ocotlan/ocotlan-1.jpg'), 'falta ocotlan-1.jpg');
   assert.ok(exists('img/placeholder/habid.svg'), 'falta habid.svg');
 });
 

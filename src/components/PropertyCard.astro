@@ -1,27 +1,38 @@
 ---
 import type { Propiedad } from '../data/propiedades';
+import EstadoBadge from './EstadoBadge.astro';
 interface Props { propiedad: Propiedad; }
 const { propiedad: p } = Astro.props;
+const disponible = p.estado === 'En venta';
 ---
-<a class="pcard card" href={`/propiedades/${p.slug}`}>
+<a class:list={['pcard', { off: !disponible }]} href={`/propiedades/${p.slug}`}>
   <div class="pcard-img">
     <img src={p.galeria[0]} alt={p.nombre} loading="lazy" />
-    <span class="pcard-badge">{p.estado}</span>
+    <span class="pcard-badge"><EstadoBadge estado={p.estado} /></span>
   </div>
   <div class="pcard-body">
     <h3>{p.nombre}</h3>
-    <p class="muted">{p.municipio}, {p.entidad}</p>
-    <p class="pcard-price grad-text">{p.precio}</p>
+    <p class="pcard-loc">{p.municipio}, {p.entidad}</p>
+    <div class="pcard-foot">
+      <span class="pcard-price">{p.precio}</span>
+      <span class="pcard-arrow" aria-hidden="true">→</span>
+    </div>
   </div>
 </a>
 <style>
-  .pcard{overflow:hidden;display:block;transition:transform .15s,border-color .15s}
-  .pcard:hover{transform:translateY(-4px);border-color:var(--accent-2)}
+  .pcard{display:block;overflow:hidden;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);transition:transform .2s ease,box-shadow .2s ease}
+  .pcard:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
   .pcard-img{position:relative;aspect-ratio:16/10;overflow:hidden}
-  .pcard-img img{width:100%;height:100%;object-fit:cover}
-  .pcard-badge{position:absolute;top:12px;left:12px;background:var(--grad);color:#fff;font-size:12px;font-weight:600;padding:5px 12px;border-radius:30px}
-  .pcard-body{padding:18px}
-  .pcard-body h3{font-size:20px}
-  .pcard-body .muted{margin:4px 0 10px;font-size:14px}
-  .pcard-price{font-family:var(--font-head);font-weight:700;font-size:19px}
+  .pcard-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+  .pcard:hover .pcard-img img{transform:scale(1.05)}
+  .pcard.off .pcard-img img{filter:grayscale(.3) brightness(.97)}
+  .pcard-badge{position:absolute;top:14px;left:14px}
+  .pcard-body{padding:22px}
+  .pcard-body h3{font-size:23px;font-weight:600;letter-spacing:-.02em}
+  .pcard-loc{margin:6px 0 16px;font-size:15px;color:var(--muted)}
+  .pcard-foot{display:flex;align-items:center;justify-content:space-between}
+  .pcard-price{font-weight:600;font-size:20px;color:var(--accent);letter-spacing:-.01em}
+  .pcard.off .pcard-price{color:var(--muted)}
+  .pcard-arrow{color:var(--muted);transition:transform .2s ease,color .2s ease}
+  .pcard:hover .pcard-arrow{color:var(--accent);transform:translateX(4px)}
 </style>

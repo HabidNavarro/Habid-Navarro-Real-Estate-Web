@@ -1,16 +1,16 @@
 export const site = {
   nombre: 'Habid Navarro',
   marca: 'Habid Navarro Bienes Raíces',
-  tagline: 'Asesoría inmobiliaria honesta en Guadalajara y Zapopan',
+  tagline: 'Asesoría inmobiliaria honesta en Jalisco',
   telefono: '+523921075791',
   telefonoDisplay: '+52 392 107 5791',
   whatsapp: '523921075791',
-  whatsappMensaje: 'Hola Habid, me interesa Valle Imperial y quisiera más información.',
+  whatsappMensaje: 'Hola Habid, me interesa la casa en Ocotlán y quisiera más información.',
   email: 'habid.realestate@gmail.com',
   instagram: 'https://instagram.com/habid.realestate',
   instagramHandle: '@habid.realestate',
   facebook: '', // PENDIENTE: URL de la página de Facebook
-  zona: 'Guadalajara y Zapopan, Jalisco',
+  zona: 'Jalisco',
   url: 'https://habidnavarro.com',
 };
 

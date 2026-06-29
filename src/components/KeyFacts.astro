@@ -3,7 +3,7 @@ interface Props { precio: string; superficie: string; tipo: string; ubicacion: s
 const { precio, superficie, tipo, ubicacion, municipio } = Astro.props;
 const PEND = '****';
 const items = [
-  { label: 'Precio', value: precio },
+  { label: 'Precio', value: precio, accent: true },
   { label: 'Superficie', value: superficie === PEND ? PEND : `${superficie} m²` },
   { label: 'Tipo', value: tipo },
   { label: 'Ubicación', value: ubicacion === PEND ? PEND : `${ubicacion}, ${municipio}` },
@@ -11,17 +11,23 @@ const items = [
 ---
 <div class="keyfacts">
   {items.map((i) => (
-    <div class="kf card">
-      <span class="kf-label muted">{i.label}</span>
-      <span class={`kf-value ${i.value === PEND ? 'kf-pend' : ''}`}>{i.value}</span>
+    <div class="kf">
+      <span class="kf-label">{i.label}</span>
+      <span class={`kf-value ${i.value === PEND ? 'kf-pend' : ''} ${i.accent ? 'kf-accent' : ''}`}>{i.value}</span>
     </div>
   ))}
 </div>
 <style>
-  .keyfacts{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-  .kf{padding:18px;display:flex;flex-direction:column;gap:6px}
-  .kf-label{font-size:12px;letter-spacing:.1em;text-transform:uppercase}
-  .kf-value{font-family:var(--font-head);font-size:20px;font-weight:700}
-  .kf-pend{color:var(--accent);opacity:.85}
-  @media(max-width:680px){.keyfacts{grid-template-columns:repeat(2,1fr)}}
+  .keyfacts{display:grid;grid-template-columns:repeat(4,1fr);background:var(--surface);border-radius:var(--radius);overflow:hidden}
+  .kf{padding:26px 22px;display:flex;flex-direction:column;gap:9px;border-right:1px solid var(--border)}
+  .kf:last-child{border-right:none}
+  .kf-label{font-size:13px;color:var(--muted);font-weight:500}
+  .kf-value{font-size:21px;font-weight:600;letter-spacing:-.01em;color:var(--text);line-height:1.2}
+  .kf-accent{color:var(--accent)}
+  .kf-pend{color:var(--accent);letter-spacing:.08em}
+  @media(max-width:680px){
+    .keyfacts{grid-template-columns:repeat(2,1fr)}
+    .kf:nth-child(2n){border-right:none}
+    .kf:nth-child(1),.kf:nth-child(2){border-bottom:1px solid var(--border)}
+  }
 </style>
