@@ -23,7 +23,12 @@ const { p } = Astro.props;
       </div>
       <h1 class="sec-title">{p.nombre}</h1>
       <p class="detail-spec mono">{p.superficie} m² &nbsp;/&nbsp; {p.tipo}</p>
-      <div class="reveal" style="margin-top:26px"><Gallery imagenes={p.galeria} alt={p.nombre} /></div>
+      {p.galeria.length > 0
+        ? <div class="reveal" style="margin-top:26px"><Gallery imagenes={p.galeria} alt={p.nombre} /></div>
+        : <div class="reveal nofotos" style="margin-top:26px">
+            <Icon name="image-off" size={32} />
+            <p>Fotos no disponibles por un error temporal. Vuelve a intentarlo más tarde.</p>
+          </div>}
       <div class="reveal" style="margin-top:36px"><KeyFacts precio={p.precio} superficie={p.superficie} tipo={p.tipo} ubicacion={p.ubicacion} municipio={p.municipio} /></div>
       <div class="detail-desc reveal">
         {p.descripcion.map((par) => <p>{par}</p>)}
@@ -43,6 +48,8 @@ const { p } = Astro.props;
   .detail-top{display:flex;align-items:center;gap:13px;margin-bottom:10px}
   .detail-place{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500}
   .detail-spec{margin-top:14px;font-size:17px;color:var(--accent);font-weight:500}
+  .nofotos{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;min-height:300px;background:var(--surface);border:1px dashed var(--line);border-radius:var(--radius);color:var(--muted);text-align:center;padding:32px}
+  .nofotos p{font-size:15px;max-width:340px}
   .detail-desc{max-width:720px;margin-top:44px;display:flex;flex-direction:column;gap:18px;font-size:18px;line-height:1.55;color:#424245}
   .map-pending{margin-top:24px;padding:16px 18px;border:1px dashed var(--line);border-radius:14px;color:var(--muted);display:flex;align-items:center;gap:9px}
   .mapwrap{margin-top:24px;border-radius:18px;overflow:hidden;border:1px solid var(--border)}

@@ -1,4 +1,4 @@
-# Habid Navarro Bienes Raíces — Sitio web
+# Habid Navarro Bienes Raíces · Sitio web
 
 Sitio estático hecho con [Astro](https://astro.build). Estilo "Oscuro Premium".
 Mini-sitio de 5 vistas: Inicio, Propiedades, ficha de propiedad, Sobre mí y Contacto.

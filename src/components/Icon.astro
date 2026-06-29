@@ -1,5 +1,5 @@
 ---
-// Custom line-icon set (24×24, stroke = currentColor) — coherent with the
+// Custom line-icon set (24x24, stroke = currentColor), coherent with the
 // clean, light, blue aesthetic of the site. No emojis.
 interface Props { name: string; size?: number; class?: string; }
 const { name, size = 22, class: cls = '' } = Astro.props;
@@ -35,6 +35,7 @@ const { name, size = 22, class: cls = '' } = Astro.props;
   {name === 'pool' && (<><path d="M2 13c1.6 0 1.6-1.6 3.3-1.6S6.9 13 8.5 13s1.6-1.6 3.3-1.6S13.4 13 15 13s1.6-1.6 3.3-1.6S19.9 13 21.5 13" /><path d="M2 18c1.6 0 1.6-1.6 3.3-1.6S6.9 18 8.5 18s1.6-1.6 3.3-1.6S13.4 18 15 18s1.6-1.6 3.3-1.6S19.9 18 21.5 18" /><path d="M7 11V5a2 2 0 0 1 4 0v2" /></>)}
   {name === 'check' && (<><circle cx="12" cy="12" r="9" /><path d="M8.5 12.5l2.5 2.5 4.5-5" /></>)}
   {name === 'pin' && (<><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" /></>)}
+  {name === 'image-off' && (<><path d="M3 3l18 18" /><path d="M21 15V5a2 2 0 0 0-2-2H9" /><path d="M3 7v12a2 2 0 0 0 2 2h12" /><path d="M7.5 16.5l4-4 2 2" /></>)}
   {name === 'whatsapp' && (<><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.4L3 21l2.2-5.5A8.4 8.4 0 1 1 21 11.5z" /></>)}
   {name === 'phone' && (<><path d="M22 16.9v2.6a2 2 0 0 1-2.2 2 19.6 19.6 0 0 1-8.5-3 19.3 19.3 0 0 1-6-6 19.6 19.6 0 0 1-3-8.6A2 2 0 0 1 4.1 2h2.6a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L7.6 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z" /></>)}
   {name === 'mail' && (<><rect x="2" y="4" width="20" height="16" rx="2" /><path d="M3 6.5l9 6 9-6" /></>)}

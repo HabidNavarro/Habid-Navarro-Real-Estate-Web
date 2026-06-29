@@ -4,8 +4,8 @@ const { imagenes, alt } = Astro.props;
 ---
 <div class="gallery">
   {imagenes.map((src, i) => (
-    <button type="button" class={`g-item ${i === 0 ? 'g-lead' : ''}`} data-idx={i} aria-label={`${alt} — ver foto ${i + 1}`}>
-      <img src={src} alt={`${alt} — foto ${i + 1}`} loading="lazy" />
+    <button type="button" class={`g-item ${i === 0 ? 'g-lead' : ''}`} data-idx={i} aria-label={`${alt}, ver foto ${i + 1}`}>
+      <img src={src} alt={`${alt}, foto ${i + 1}`} loading="lazy" />
     </button>
   ))}
 </div>
@@ -52,7 +52,7 @@ const { imagenes, alt } = Astro.props;
     const show = (i) => {
       idx = (i + imagenes.length) % imagenes.length;
       img.src = imagenes[idx];
-      img.alt = `${alt} — foto ${idx + 1}`;
+      img.alt = `${alt}, foto ${idx + 1}`;
       count.textContent = `${idx + 1} / ${imagenes.length}`;
     };
     const open = (i) => { show(i); lb.classList.add('open'); lb.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden'; };

@@ -1,4 +1,4 @@
-# 📘 Guía de tu sitio web — Habid Navarro Bienes Raíces
+# 📘 Guía de tu sitio web · Habid Navarro Bienes Raíces
 
 Guía rápida y sin tecnicismos: qué tienes, qué falta y cómo actualizarlo.
 
@@ -6,7 +6,7 @@ Guía rápida y sin tecnicismos: qué tienes, qué falta y cómo actualizarlo.
 
 ## 🌐 Tu sitio en internet
 - **Dirección oficial:** **https://habidnavarro.com**
-  *(ya comprado y conectado; el candado de seguridad 🔒 se está activando — la primera vez puede tardar de unos minutos hasta ~1 hora)*
+  *(ya comprado y conectado; el candado de seguridad 🔒 se está activando: la primera vez puede tardar de unos minutos hasta ~1 hora)*
 - **Dirección alterna (siempre disponible):** **https://habidnavarro.pages.dev**
 - Las dos muestran el **mismo sitio**, con HTTPS (candado de seguridad) **gratis**.
 
@@ -25,7 +25,7 @@ La propiedad real publicada es la **Casa en Ocotlán** ($2,500,000), con **fotos
 > **Catálogo con escasez:** además de tu casa en Ocotlán (la única **En venta**), el catálogo muestra unas casas de **demostración** marcadas como *Apartada* (amarillo) o *Vendida* (rojo), con fotos de stock libres de derechos. Sirven para dar sensación de movimiento. Avísame y las quito o las cambio cuando tengas inventario real.
 
 ## ✅ Lo que falta por completar
-Ya quedaron la dirección y el mapa. Lo que aún conviene completar —cuando lo tengas, **me lo mandas por aquí y yo lo actualizo**:
+Ya quedaron la dirección y el mapa. Lo que aún conviene completar. Cuando lo tengas, **me lo mandas por aquí y yo lo actualizo**:
 
 1. **Tu foto** para la sección "Sobre mí"
 2. **URL de tu página de Facebook**

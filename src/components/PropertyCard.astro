@@ -1,13 +1,17 @@
 ---
 import type { Propiedad } from '../data/propiedades';
 import EstadoBadge from './EstadoBadge.astro';
+import Icon from './Icon.astro';
 interface Props { propiedad: Propiedad; }
 const { propiedad: p } = Astro.props;
 const disponible = p.estado === 'En venta';
+const tieneFotos = p.galeria.length > 0;
 ---
 <a class:list={['pcard', { off: !disponible }]} href={`/propiedades/${p.slug}`}>
   <div class="pcard-img">
-    <img src={p.galeria[0]} alt={p.nombre} loading="lazy" />
+    {tieneFotos
+      ? <img src={p.galeria[0]} alt={p.nombre} loading="lazy" />
+      : <span class="pcard-noimg"><Icon name="image-off" size={26} />Fotos no disponibles</span>}
     <span class="pcard-badge"><EstadoBadge estado={p.estado} /></span>
   </div>
   <div class="pcard-body">
@@ -26,6 +30,7 @@ const disponible = p.estado === 'En venta';
   .pcard-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
   .pcard:hover .pcard-img img{transform:scale(1.05)}
   .pcard.off .pcard-img img{filter:grayscale(.3) brightness(.97)}
+  .pcard-noimg{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:var(--surface);color:var(--muted);font-size:13px;font-weight:500}
   .pcard-badge{position:absolute;top:14px;left:14px}
   .pcard-body{padding:22px}
   .pcard-body h3{font-size:23px;font-weight:600;letter-spacing:-.02em}
