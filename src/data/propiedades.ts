@@ -63,7 +63,7 @@ export const propiedades: Propiedad[] = [
     mapaEmbed: '<iframe src="https://www.google.com/maps?q=Islas%20V%C3%ADrgenes%20284-C%2C%20Ocotl%C3%A1n%2C%20Jalisco&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ubicación de la casa en Ocotlán" allowfullscreen></iframe>',
   },
 
-  // Propiedades de demostración (escasez): fotos de stock (Unsplash), datos ficticios.
+  // Propiedades de demostración (escasez): datos ficticios.
   // Editar o eliminar cuando haya inventario real disponible.
   {
     slug: 'casa-zapopan',
@@ -97,7 +97,13 @@ export const propiedades: Propiedad[] = [
     municipio: 'Guadalajara',
     entidad: 'Jalisco',
     amenidades: ['4 recámaras', '3.5 baños', 'Alberca', 'Roof garden', 'Cochera 3 autos', 'Cocina integral'],
-    galeria: [],
+    galeria: [
+      '/img/providencia/providencia-1.jpg',
+      '/img/providencia/providencia-2.jpg',
+      '/img/providencia/providencia-3.jpg',
+      '/img/providencia/providencia-4.jpg',
+      '/img/providencia/providencia-5.jpg',
+    ],
     resumen: 'Casa de lujo en Providencia, Guadalajara: 280 m², alberca, roof garden y acabados premium.',
     descripcion: [
       'Casa de gran nivel en el corazón de Providencia, a pasos de los mejores servicios de Guadalajara.',
@@ -117,7 +123,12 @@ export const propiedades: Propiedad[] = [
     municipio: 'Chapala',
     entidad: 'Jalisco',
     amenidades: ['3 recámaras', '2 baños', 'Vista al lago', 'Jardín amplio', 'Cochera 2 autos', 'Terraza'],
-    galeria: [],
+    galeria: [
+      '/img/chapala/chapala-1.jpg',
+      '/img/chapala/chapala-2.jpg',
+      '/img/chapala/chapala-3.jpg',
+      '/img/chapala/chapala-4.jpg',
+    ],
     resumen: 'Casa de descanso en la ribera de Chapala, con jardín, terraza y un clima envidiable todo el año.',
     descripcion: [
       'Retiro ideal a orillas del lago de Chapala, con jardín amplio y terraza para disfrutar el clima templado de la ribera.',
@@ -157,7 +168,11 @@ export const propiedades: Propiedad[] = [
     municipio: 'Tlajomulco',
     entidad: 'Jalisco',
     amenidades: ['2 recámaras', '1.5 baños', 'Cochera 2 autos', 'Jardín', 'Cocina integral', 'Caseta de vigilancia'],
-    galeria: [],
+    galeria: [
+      '/img/tlajomulco/tlajomulco-1.jpg',
+      '/img/tlajomulco/tlajomulco-2.jpg',
+      '/img/tlajomulco/tlajomulco-3.jpg',
+    ],
     resumen: 'Casa moderna en un coto privado de Tlajomulco (Santa Fe), ideal para estrenar y crecer.',
     descripcion: [
       'Casa moderna en coto privado en la zona de Santa Fe, Tlajomulco, con excelente conectividad al sur de la ciudad.',
