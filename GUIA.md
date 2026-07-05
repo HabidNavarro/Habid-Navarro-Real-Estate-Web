@@ -22,7 +22,7 @@ Diseño "Oscuro Premium", **botón flotante de WhatsApp**, optimizado para celul
 
 La propiedad real publicada es la **Casa en Ocotlán** ($2,500,000), con **fotos reales**, dirección (Islas Vírgenes 284-C), **mapa de Google** y su descripción completa.
 
-> **Catálogo con escasez:** además de tu casa en Ocotlán (la única **En venta**), el catálogo muestra unas casas de **demostración** marcadas como *Apartada* (amarillo) o *Vendida* (rojo), con fotos de stock libres de derechos. Sirven para dar sensación de movimiento. Avísame y las quito o las cambio cuando tengas inventario real.
+> **Catálogo con escasez:** además de tu casa en Ocotlán (la única **En venta**), el catálogo muestra unas casas de **demostración** marcadas como *Apartada* (amarillo) o *Vendida* (rojo). Las de Chapala, Providencia y Tlajomulco ya tienen las fotos que me mandaste; las de Zapopan y Tlaquepaque siguen sin fotos. Sirven para dar sensación de movimiento. Avísame y las quito o las cambio cuando tengas inventario real.
 
 ## ✅ Lo que falta por completar
 Ya quedaron la dirección y el mapa. Lo que aún conviene completar. Cuando lo tengas, **me lo mandas por aquí y yo lo actualizo**:
@@ -50,4 +50,4 @@ Tú **no necesitas tocar nada técnico**. Solo **mándame los datos o fotos por 
 - Diseño y plan completos: carpeta **`docs/superpowers/`**.
 
 ---
-*Última actualización: 29 de junio de 2026.*
+*Última actualización: 5 de julio de 2026.*
