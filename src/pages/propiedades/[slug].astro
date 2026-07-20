@@ -1,57 +1,82 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import KeyFacts from '../../components/KeyFacts.astro';
-import AmenityGrid from '../../components/AmenityGrid.astro';
-import Gallery from '../../components/Gallery.astro';
-import CtaBand from '../../components/CtaBand.astro';
-import EstadoBadge from '../../components/EstadoBadge.astro';
 import Icon from '../../components/Icon.astro';
-import { propiedades, type Propiedad } from '../../data/propiedades';
+import EstadoBadge from '../../components/EstadoBadge.astro';
+import Gallery from '../../components/Gallery.astro';
+import PropertyCard from '../../components/PropertyCard.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { properties, site, waLink, cardImage, type Property } from '../../data/content';
 
 export function getStaticPaths() {
-  return propiedades.map((p) => ({ params: { slug: p.slug }, props: { p } }));
+  return properties.map((p) => ({ params: { slug: p.slug }, props: { p } }));
 }
-interface Props { p: Propiedad; }
+interface Props { p: Property; }
 const { p } = Astro.props;
+const message = `Hola Habid, me interesa ${p.name} en ${p.municipality} y quisiera más información.`;
+const related = properties.filter((x) => x.slug !== p.slug).slice(0, 3);
+const mapUrl = p.map_query ? `https://www.google.com/maps?q=${encodeURIComponent(p.map_query)}&output=embed` : '';
 ---
-<BaseLayout title={p.nombre} description={p.resumen} image={p.galeria[0]}>
-  <section class="section">
+<BaseLayout title={`${p.name} | Habid Navarro Bienes Raíces`} description={p.summary} image={cardImage(p)}>
+  <section class="detail-top">
     <div class="container">
-      <div class="detail-top">
-        <EstadoBadge estado={p.estado} />
-        <span class="detail-place">{p.municipio}, {p.entidad}</span>
+      <div class="breadcrumbs"><span><a href="/">Inicio</a></span><span><a href="/propiedades">Propiedades</a></span><span>{p.name}</span></div>
+      <div class="detail-heading">
+        <div>
+          <EstadoBadge property={p} />
+          <h1>{p.name}</h1>
+          <div class="detail-subline"><span><Icon name="pin" size={16} /> {p.location}, {p.municipality}</span><span><Icon name="home" size={16} /> {p.type}</span></div>
+        </div>
+        <div class="detail-price"><small>Precio publicado</small><strong>{p.price}</strong></div>
       </div>
-      <h1 class="sec-title">{p.nombre}</h1>
-      <p class="detail-spec mono">{p.superficie} m² &nbsp;/&nbsp; {p.tipo}</p>
-      {p.galeria.length > 0
-        ? <div class="reveal" style="margin-top:26px"><Gallery imagenes={p.galeria} alt={p.nombre} /></div>
-        : <div class="reveal nofotos" style="margin-top:26px">
-            <Icon name="image-off" size={32} />
-            <p>Fotos no disponibles por un error temporal. Vuelve a intentarlo más tarde.</p>
-          </div>}
-      <div class="reveal" style="margin-top:36px"><KeyFacts precio={p.precio} superficie={p.superficie} tipo={p.tipo} ubicacion={p.ubicacion} municipio={p.municipio} /></div>
-      <div class="detail-desc reveal">
-        {p.descripcion.map((par) => <p>{par}</p>)}
-      </div>
-      <div class="reveal">
-        <h2 class="sub-h">Amenidades</h2>
-        <AmenityGrid amenidades={p.amenidades} />
-      </div>
-      {p.mapaEmbed
-        ? <div class="mapwrap reveal" set:html={p.mapaEmbed}></div>
-        : <p class="muted map-pending reveal"><Icon name="pin" size={18} /> Ubicación exacta y mapa: por actualizar.</p>}
+      {p.collection === 'referencia' && (
+        <div class="detail-notice"><Icon name="info" size={18} /><div><strong>Ficha de referencia.</strong> Esta propiedad figura como {p.status.toLowerCase()} y no se presenta como inventario activo. Confirma cualquier dato directamente.</div></div>
+      )}
+      <Gallery property={p} />
     </div>
   </section>
-  <CtaBand titulo={`¿Quieres más información de ${p.nombre}?`} />
+  <section>
+    <div class="container detail-layout">
+      <article class="detail-main">
+        <h2>Una propiedad para entender a detalle.</h2>
+        {p.description.map((paragraph) => <p>{paragraph}</p>)}
+        <section class="detail-section">
+          <h2>Datos principales</h2>
+          <div class="fact-grid">
+            <div class="fact-box"><Icon name="area" /><strong>{p.area}</strong><span>Superficie</span></div>
+            <div class="fact-box"><Icon name="bed" /><strong>{p.bedrooms}</strong><span>Recámaras</span></div>
+            <div class="fact-box"><Icon name="bath" /><strong>{p.bathrooms}</strong><span>Baños</span></div>
+            <div class="fact-box"><Icon name="pin" /><strong>{p.municipality}</strong><span>Municipio</span></div>
+          </div>
+        </section>
+        <section class="detail-section">
+          <h2>Características</h2>
+          <ul class="amenity-grid">{p.amenities.map((a) => <li class="amenity">{a}</li>)}</ul>
+        </section>
+        {mapUrl && (
+          <section class="detail-section">
+            <h2>Ubicación</h2>
+            <p>La dirección publicada permite entender su relación con servicios y equipamiento de {p.municipality}.</p>
+            <div class="map-wrap"><iframe src={mapUrl} title={`Mapa de ${p.name}`} loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>
+          </section>
+        )}
+      </article>
+      <aside class="contact-card">
+        <div class="contact-card-brand"><img src="/img/brand/logo-mark.svg" alt="" /><div><strong>{site.name}</strong><span>Asesor inmobiliario en Jalisco</span></div></div>
+        <h3>¿Te interesa esta propiedad?</h3>
+        <p>Escríbeme para confirmar información, disponibilidad y agendar una conversación.</p>
+        <div class="contact-card-actions">
+          <a class="btn btn-wa btn-block" href={waLink(message)} target="_blank" rel="noopener noreferrer"><Icon name="whatsapp" /> WhatsApp</a>
+          <a class="btn btn-secondary btn-block" href={`tel:${site.phone}`}><Icon name="phone" /> Llamar</a>
+        </div>
+        <div class="contact-card-foot">Respuesta directa · Sin formularios interminables</div>
+      </aside>
+    </div>
+  </section>
+  <section class="section surface">
+    <div class="container">
+      <div class="section-head"><div class="section-head-copy"><span class="eyebrow">Más opciones</span><h2 class="section-title">Explora otras fichas</h2></div><a class="text-link" href="/propiedades">Ver catálogo <Icon name="arrow" size={17} /></a></div>
+      <div class="property-grid">{related.map((x) => <PropertyCard property={x} />)}</div>
+    </div>
+  </section>
+  <CtaBand />
 </BaseLayout>
-<style>
-  .detail-top{display:flex;align-items:center;gap:13px;margin-bottom:10px}
-  .detail-place{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500}
-  .detail-spec{margin-top:14px;font-size:17px;color:var(--accent);font-weight:500}
-  .nofotos{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;min-height:300px;background:var(--surface);border:1px dashed var(--line);border-radius:var(--radius);color:var(--muted);text-align:center;padding:32px}
-  .nofotos p{font-size:15px;max-width:340px}
-  .detail-desc{max-width:720px;margin-top:44px;display:flex;flex-direction:column;gap:18px;font-size:18px;line-height:1.55;color:#424245}
-  .map-pending{margin-top:24px;padding:16px 18px;border:1px dashed var(--line);border-radius:14px;color:var(--muted);display:flex;align-items:center;gap:9px}
-  .mapwrap{margin-top:24px;border-radius:18px;overflow:hidden;border:1px solid var(--border)}
-  .mapwrap :global(iframe){width:100%;min-height:420px;border:0;display:block}
-</style>

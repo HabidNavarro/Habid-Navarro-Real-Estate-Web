@@ -1,43 +1,34 @@
 ---
-import type { Propiedad } from '../data/propiedades';
-import EstadoBadge from './EstadoBadge.astro';
 import Icon from './Icon.astro';
-interface Props { propiedad: Propiedad; }
-const { propiedad: p } = Astro.props;
-const disponible = p.estado === 'En venta';
-const tieneFotos = p.galeria.length > 0;
+import EstadoBadge from './EstadoBadge.astro';
+import { cardImage, type Property } from '../data/content';
+interface Props { property: Property; filters?: boolean; }
+const { property: p, filters = false } = Astro.props;
+const href = `/propiedades/${p.slug}`;
+const image = cardImage(p);
+const searchText = [p.name, p.municipality, p.location, p.type, p.bedrooms, p.price].join(' ');
 ---
-<a class:list={['pcard', { off: !disponible }]} href={`/propiedades/${p.slug}`}>
-  <div class="pcard-img">
-    {tieneFotos
-      ? <img src={p.galeria[0]} alt={p.nombre} loading="lazy" />
-      : <span class="pcard-noimg"><Icon name="image-off" size={26} />Fotos no disponibles</span>}
-    <span class="pcard-badge"><EstadoBadge estado={p.estado} /></span>
-  </div>
-  <div class="pcard-body">
-    <h3>{p.nombre}</h3>
-    <p class="pcard-loc">{p.municipio}, {p.entidad}</p>
-    <div class="pcard-foot">
-      <span class="pcard-price">{p.precio}</span>
-      <span class="pcard-arrow" aria-hidden="true">→</span>
+<article
+  class="property-card reveal"
+  data-filter-card={filters ? '' : undefined}
+  data-search={filters ? searchText : undefined}
+  data-status={filters ? p.status_key : undefined}
+  data-municipality={filters ? p.municipality : undefined}
+>
+  <a class="property-media" href={href} aria-label={`Ver ${p.name}`}>
+    <img src={image} alt={`${p.name} en ${p.municipality}`} loading="lazy" width="800" height="600" />
+    <span class="property-overlay"></span>
+    <EstadoBadge property={p} />
+    {p.collection === 'referencia' && <span class="reference-chip">Referencia</span>}
+  </a>
+  <div class="property-body">
+    <div class="property-location">{p.municipality} · {p.state}</div>
+    <h3 class="property-title"><a href={href}>{p.name}</a></h3>
+    <p class="property-summary">{p.summary}</p>
+    <div class="property-facts"><span><Icon name="bed" size={15} /> {p.bedrooms}</span><span><Icon name="area" size={15} /> {p.area}</span></div>
+    <div class="property-footer">
+      <div class="property-price"><small>Precio publicado</small><strong>{p.price}</strong></div>
+      <a class="card-arrow" href={href} aria-label={`Abrir ficha de ${p.name}`}><Icon name="arrow" size={18} /></a>
     </div>
   </div>
-</a>
-<style>
-  .pcard{display:block;overflow:hidden;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);transition:transform .2s ease,box-shadow .2s ease}
-  .pcard:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
-  .pcard-img{position:relative;aspect-ratio:16/10;overflow:hidden}
-  .pcard-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
-  .pcard:hover .pcard-img img{transform:scale(1.05)}
-  .pcard.off .pcard-img img{filter:grayscale(.3) brightness(.97)}
-  .pcard-noimg{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:var(--surface);color:var(--muted);font-size:13px;font-weight:500}
-  .pcard-badge{position:absolute;top:14px;left:14px}
-  .pcard-body{padding:22px}
-  .pcard-body h3{font-size:23px;font-weight:600;letter-spacing:-.02em}
-  .pcard-loc{margin:6px 0 16px;font-size:15px;color:var(--muted)}
-  .pcard-foot{display:flex;align-items:center;justify-content:space-between}
-  .pcard-price{font-weight:600;font-size:20px;color:var(--accent);letter-spacing:-.01em}
-  .pcard.off .pcard-price{color:var(--muted)}
-  .pcard-arrow{color:var(--muted);transition:transform .2s ease,color .2s ease}
-  .pcard:hover .pcard-arrow{color:var(--accent);transform:translateX(4px)}
-</style>
+</article>

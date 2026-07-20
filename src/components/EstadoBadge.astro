@@ -1,17 +1,6 @@
 ---
-interface Props { estado: string; }
-const { estado } = Astro.props;
-const styles: Record<string, { bg: string; fg: string }> = {
-  'En venta': { bg: '#1FA85A', fg: '#ffffff' },
-  'Apartada': { bg: '#E8B423', fg: '#3a2d00' },
-  'Vendida': { bg: '#D24B3E', fg: '#ffffff' },
-};
-const c = styles[estado] ?? styles['En venta'];
+import type { Property } from '../data/content';
+interface Props { property: Property; }
+const { property } = Astro.props;
 ---
-<span class="estado" style={`background:${c.bg};color:${c.fg}`}>
-  <span class="estado-dot" style={`background:${c.fg}`}></span>{estado}
-</span>
-<style>
-  .estado{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:600;letter-spacing:.02em;padding:6px 13px;border-radius:980px;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.14)}
-  .estado-dot{width:6px;height:6px;border-radius:50%;opacity:.85}
-</style>
+<span class={`status-chip status-${property.status_key}`}>{property.status}</span>

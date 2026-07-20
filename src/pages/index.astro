@@ -1,8 +1,54 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/Hero.astro';
-import { site } from '../data/site';
+import Icon from '../components/Icon.astro';
+import PropertyCard from '../components/PropertyCard.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { properties, featured, waLink, cardImage } from '../data/content';
+const p = featured;
+const active = properties.filter((x) => x.collection === 'disponible');
+const selected = [p, ...properties.filter((x) => x.slug !== p.slug).slice(0, 2)];
 ---
-<BaseLayout title={site.marca} description={site.tagline}>
-  <Hero />
+<BaseLayout title="Habid Navarro Bienes Raíces | Asesoría inmobiliaria en Jalisco" description="Asesoría inmobiliaria honesta en Jalisco. Explora propiedades y recibe acompañamiento directo para tomar una mejor decisión." image={cardImage(p)}>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <span class="hero-kicker"><span class="hero-kicker-dot"></span>Asesoría inmobiliaria en Jalisco</span>
+        <h1>Compra bien.<br /><span class="gradient-text">Decide con claridad.</span></h1>
+        <p class="hero-lead">Propiedades presentadas con información directa, contexto local y acompañamiento personal de principio a fin.</p>
+        <div class="hero-actions"><a class="btn btn-primary" href="/propiedades">Explorar propiedades <Icon name="arrow" /></a><a class="btn btn-secondary" href={waLink('Hola Habid, estoy buscando una propiedad en Jalisco.')} target="_blank" rel="noopener noreferrer"><Icon name="whatsapp" /> Cuéntame qué buscas</a></div>
+        <div class="hero-proof">
+          <div class="proof-item"><span class="proof-icon"><Icon name="shield" size={16} /></span>Información transparente</div>
+          <div class="proof-item"><span class="proof-icon"><Icon name="chat" size={16} /></span>Trato directo</div>
+          <div class="proof-item"><span class="proof-icon"><Icon name="pin" size={16} /></span>Conocimiento local</div>
+        </div>
+      </div>
+      <div class="hero-visual" aria-label={`Propiedad destacada: ${p.name}`}>
+        <a class="hero-main-photo" href={`/propiedades/${p.slug}`}><img src={cardImage(p)} alt={`Fachada de ${p.name}`} width="900" height="1100" /><span class="hero-property-caption"><small>Propiedad disponible</small><strong>{p.name}</strong><span>{p.location} · {p.municipality}</span></span></a>
+        <div class="hero-price-card"><small>Precio publicado</small><strong>{p.price}</strong><span><i class="hero-kicker-dot"></i>{active.length} {active.length === 1 ? 'propiedad activa' : 'propiedades activas'}</span></div>
+        <div class="hero-brand-orbit"><img src="/img/brand/logo-mark.svg" alt="" aria-hidden="true" /></div>
+      </div>
+    </div>
+  </section>
+  <section class="trust-strip" aria-label="Principios del servicio"><div class="container trust-grid"><div class="trust-item"><strong>Asesoría directa</strong><span>Hablas conmigo, no con un sistema</span></div><div class="trust-item"><strong>Información verificable</strong><span>Datos claros antes de avanzar</span></div><div class="trust-item"><strong>Enfoque local</strong><span>Atención en Jalisco</span></div><div class="trust-item"><strong>Sin presión</strong><span>Tu decisión, a tu ritmo</span></div></div></section>
+  <section class="section">
+    <div class="container">
+      <div class="section-head"><div class="section-head-copy"><span class="eyebrow">Catálogo</span><h2 class="section-title">Propiedades y referencias recientes</h2><p class="section-lead">Una vista rápida del inventario y de operaciones de referencia. Cada ficha distingue claramente su estado.</p></div><a class="text-link" href="/propiedades">Ver catálogo completo <Icon name="arrow" size={17} /></a></div>
+      <div class="property-grid">{selected.map((x) => <PropertyCard property={x} />)}</div>
+    </div>
+  </section>
+  <section class="section surface">
+    <div class="container">
+      <div class="featured-block reveal">
+        <div class="featured-image"><img src={p.images[1]} alt={`Interior de ${p.name}`} loading="lazy" width="1000" height="900" /></div>
+        <div class="featured-content"><span class="eyebrow">Propiedad destacada</span><h2>{p.name}</h2><div class="featured-address"><Icon name="pin" size={18} /> {p.location}, {p.municipality}</div><div class="featured-price">{p.price}</div><p class="featured-copy">{p.summary}</p><div class="featured-stats"><div class="featured-stat"><strong>{p.area}</strong><span>Terreno</span></div><div class="featured-stat"><strong>{p.bedrooms}</strong><span>Distribución</span></div><div class="featured-stat"><strong>Hasta 3 niveles</strong><span>Potencial de crecimiento</span></div></div><div class="featured-actions"><a class="btn btn-primary" href={`/propiedades/${p.slug}`}>Ver ficha completa <Icon name="arrow" /></a><a class="btn btn-secondary" href={waLink(`Hola Habid, me interesa ${p.name}.`)} target="_blank" rel="noopener noreferrer">Consultar</a></div></div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container"><div class="section-head"><div class="section-head-copy"><span class="eyebrow">Cómo trabajamos</span><h2 class="section-title">Un proceso simple, sin ruido.</h2><p class="section-lead">Menos promesas generales y más claridad en cada punto de la decisión.</p></div></div><div class="process-grid"><article class="process-card reveal"><h3>Entendemos tu búsqueda</h3><p>Presupuesto, ubicación, tiempos y prioridades reales antes de proponerte opciones.</p></article><article class="process-card reveal"><h3>Revisamos la propiedad</h3><p>Datos, condiciones y contexto para que sepas qué estás evaluando.</p></article><article class="process-card reveal"><h3>Acompañamos la decisión</h3><p>Visita, conversación y siguientes pasos con comunicación directa.</p></article></div></div>
+  </section>
+  <section class="section surface-blue">
+    <div class="container"><div class="section-head"><div class="section-head-copy"><span class="eyebrow">Forma de trabajar</span><h2 class="section-title">La confianza se diseña con hechos.</h2></div></div><div class="values-grid"><article class="value-card reveal"><span class="value-icon"><Icon name="eye" /></span><h3>Transparencia</h3><p>Los estados y datos del catálogo se presentan sin ambigüedad.</p></article><article class="value-card reveal"><span class="value-icon"><Icon name="compass" /></span><h3>Contexto</h3><p>No sólo ves una casa: entiendes ubicación, uso y posibilidades.</p></article><article class="value-card reveal"><span class="value-icon"><Icon name="user" /></span><h3>Atención personal</h3><p>La comunicación es directa y con seguimiento puntual.</p></article><article class="value-card reveal"><span class="value-icon"><Icon name="heart" /></span><h3>Sin presión</h3><p>La prioridad es una decisión que tenga sentido para ti.</p></article></div></div>
+  </section>
+  <CtaBand />
 </BaseLayout>

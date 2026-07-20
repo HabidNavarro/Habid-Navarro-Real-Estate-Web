@@ -37,10 +37,11 @@ test('home: footer con teléfono, correo y aviso de privacidad', () => {
   assert.match(h, /Aviso de privacidad/);
 });
 
-test('home: hero minimal que lleva al catálogo', () => {
+test('home: hero v2 que lleva al catálogo', () => {
   const h = read('index.html');
   assert.match(h, /href="\/propiedades"/);
-  assert.ok(h.includes('Ver propiedades'), 'falta CTA "Ver propiedades"');
+  assert.ok(h.includes('Explorar propiedades'), 'falta CTA "Explorar propiedades"');
+  assert.ok(h.includes('Decide con claridad'), 'falta el titular del hero v2');
   assert.ok(!h.includes('Estructura de concreto colado'), 'el home no debe listar amenidades');
 });
 
@@ -54,13 +55,23 @@ test('propiedades: catálogo con varias casas y estados', () => {
   }
 });
 
-test('ficha: datos clave, amenidades y descripción', () => {
+test('catálogo: filtros y estado vacío presentes', () => {
+  const h = read('propiedades/index.html');
+  assert.match(h, /id="property-search"/);
+  assert.match(h, /id="property-status"/);
+  assert.match(h, /id="property-municipality"/);
+  assert.match(h, /id="no-results"/);
+  assert.match(h, /data-filter-card/);
+});
+
+test('ficha: datos clave, características y descripción', () => {
   assert.ok(exists('propiedades/casa-ocotlan/index.html'), 'falta la ficha');
   const h = read('propiedades/casa-ocotlan/index.html');
   assert.match(h, /\$2,500,000/);
-  assert.match(h, /Precio/);
-  assert.match(h, /Amenidades/);
+  assert.match(h, /Precio publicado/);
+  assert.match(h, /Características/);
   assert.match(h, /concreto colado/);
+  assert.match(h, /id="lightbox"/);
 });
 
 test('sobre-mi: bio presente y SIN mención de cédula', () => {

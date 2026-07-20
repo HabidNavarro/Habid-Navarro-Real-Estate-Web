@@ -1,27 +1,14 @@
 ---
-import { waLink, site } from '../data/site';
-interface Props { titulo?: string; texto?: string; }
-const {
-  titulo = '¿Te interesa esta casa en Ocotlán?',
-  texto = 'Escríbeme y con gusto te comparto toda la información y agendamos una visita.',
-} = Astro.props;
+import Icon from './Icon.astro';
+import { waLink } from '../data/content';
 ---
-<section class="cta-band">
-  <div class="container cta-inner">
-    <div>
-      <h2 class="cta-title">{titulo}</h2>
-      <p class="muted">{texto}</p>
-    </div>
-    <div class="cta-actions">
-      <a class="btn btn-wa" href={waLink()} target="_blank" rel="noopener">WhatsApp</a>
-      <a class="btn btn-ghost" href={`tel:${site.telefono}`}>Llamar</a>
+<section class="section">
+  <div class="container">
+    <div class="cta-panel reveal">
+      <div class="cta-content">
+        <div class="cta-copy"><span class="eyebrow">Conversación directa</span><h2>Una buena decisión empieza con información clara.</h2><p>Cuéntame qué estás buscando. Revisamos opciones, contexto y siguientes pasos sin presión.</p></div>
+        <div class="cta-actions"><a class="btn btn-primary" href={waLink('Hola Habid, quisiera platicar sobre una propiedad.')} target="_blank" rel="noopener noreferrer"><Icon name="whatsapp" /> Escribir ahora</a><a class="btn btn-secondary" href="/contacto">Ver contacto</a></div>
+      </div>
     </div>
   </div>
 </section>
-<style>
-  .cta-band{background:var(--surface);border-top:1px solid var(--border)}
-  .cta-inner{display:flex;flex-direction:column;align-items:center;text-align:center;gap:26px;padding:84px 22px}
-  .cta-title{font-size:clamp(28px,4.2vw,44px);font-weight:600;letter-spacing:-.025em}
-  .cta-inner > div > .muted{margin-top:10px;font-size:19px;max-width:540px}
-  .cta-actions{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
-</style>

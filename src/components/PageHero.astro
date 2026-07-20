@@ -1,0 +1,13 @@
+---
+interface Props { title: string; crumbs: { label: string; href?: string }[]; }
+const { title, crumbs } = Astro.props;
+---
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumbs">
+      {crumbs.map((c) => <span>{c.href ? <a href={c.href}>{c.label}</a> : c.label}</span>)}
+    </div>
+    <h1>{title}</h1>
+    <slot />
+  </div>
+</section>

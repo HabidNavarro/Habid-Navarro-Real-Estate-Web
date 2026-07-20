@@ -1,19 +1,30 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
+import PageHero from '../../components/PageHero.astro';
 import PropertyCard from '../../components/PropertyCard.astro';
-import { propiedades } from '../../data/propiedades';
+import CtaBand from '../../components/CtaBand.astro';
+import { properties } from '../../data/content';
+const municipalities = [...new Set(properties.map((p) => p.municipality))].sort();
 ---
-<BaseLayout title="Propiedades" description="Propiedades disponibles con Habid Navarro Bienes Raíces.">
+<BaseLayout title="Propiedades | Habid Navarro Bienes Raíces" description="Catálogo inmobiliario de Habid Navarro en Jalisco, con estados claros, filtros y fichas detalladas.">
+  <PageHero title="Propiedades con información clara." crumbs={[{ label: 'Inicio', href: '/' }, { label: 'Propiedades' }]}>
+    <p>Explora la propiedad disponible y antecedentes de catálogo. Los estados se muestran de forma explícita para evitar confusiones.</p>
+  </PageHero>
+  <div class="filter-bar">
+    <div class="container filter-grid">
+      <label class="field-shell" for="property-search"><Icon name="search" size={18} /><input id="property-search" type="search" placeholder="Buscar por zona, municipio o tipo…" autocomplete="off" /></label>
+      <label class="field-shell" for="property-status"><Icon name="filter" size={18} /><select id="property-status" aria-label="Filtrar por estado"><option value="all">Todos los estados</option><option value="venta">En venta</option><option value="apartada">Apartadas</option><option value="vendida">Vendidas</option></select></label>
+      <label class="field-shell" for="property-municipality"><Icon name="pin" size={18} /><select id="property-municipality" aria-label="Filtrar por municipio"><option value="all">Todos los municipios</option>{municipalities.map((m) => <option value={m}>{m}</option>)}</select></label>
+    </div>
+  </div>
   <section class="section">
     <div class="container">
-      <p class="eyebrow">Catálogo</p>
-      <h1 class="sec-title">Propiedades en Jalisco</h1>
-      <div class="pgrid reveal">
-        {propiedades.map((p) => <PropertyCard propiedad={p} />)}
-      </div>
+      <div class="catalog-note"><Icon name="info" size={20} /><div><strong>Catálogo transparente.</strong> La casa en Ocotlán es la propiedad activa publicada. Las fichas marcadas como “Referencia” muestran el formato del catálogo y antecedentes apartados o vendidos; su disponibilidad no se presume.</div></div>
+      <div class="results-meta"><span>Mostrando <strong id="result-count">{properties.length} propiedades</strong></span></div>
+      <div class="property-grid">{properties.map((p) => <PropertyCard property={p} filters={true} />)}</div>
+      <div class="no-results" id="no-results"><h3>No encontramos coincidencias</h3><p>Prueba con otro municipio, estado o palabra clave.</p></div>
     </div>
   </section>
+  <CtaBand />
 </BaseLayout>
-<style>
-  .pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:22px;margin-top:32px}
-</style>
