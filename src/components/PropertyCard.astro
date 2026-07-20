@@ -6,7 +6,7 @@ interface Props { property: Property; filters?: boolean; }
 const { property: p, filters = false } = Astro.props;
 const href = `/propiedades/${p.slug}`;
 const image = cardImage(p);
-const searchText = [p.name, p.municipality, p.location, p.type, p.bedrooms, p.price].join(' ');
+const searchText = [p.name, p.municipality, p.state, p.status, p.location, p.type, p.bedrooms, p.price].join(' ');
 ---
 <article
   class="property-card reveal"

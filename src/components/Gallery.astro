@@ -3,19 +3,22 @@ import Icon from './Icon.astro';
 import type { Property } from '../data/content';
 interface Props { property: Property; }
 const { property: p } = Astro.props;
-const images = p.images.length ? p.images : ['/img/ui/no-photo.svg'];
+const hasPhotos = p.images.length > 0;
+const images = hasPhotos ? p.images : ['/img/ui/no-photo.svg'];
 const visible = images.slice(0, 5);
 const hidden = images.slice(5);
-const placeholders = Math.max(0, 3 - visible.length);
+const placeholders = Math.max(0, 5 - visible.length);
 ---
 <div class="gallery">
-  {visible.map((img, i) => (
+  {visible.map((img, i) => hasPhotos ? (
     <button class="gallery-item" type="button" data-full={img} data-alt={`${p.name}, fotografía ${i + 1}`} aria-label={`Ampliar fotografía ${i + 1}`}>
       <img src={img} alt={`${p.name}, fotografía ${i + 1}`} width="1000" height="700" />
       {i === visible.length - 1 && images.length > 1 && (
         <span class="gallery-count"><Icon name="camera" size={15} /> Ver {images.length} fotos</span>
       )}
     </button>
+  ) : (
+    <div class="gallery-item" aria-hidden="true"><img src={img} alt="" width="1000" height="700" /></div>
   ))}
   {Array.from({ length: placeholders }).map(() => (
     <div class="gallery-item" aria-hidden="true"><img src="/img/ui/no-photo.svg" alt="" width="1000" height="700" /></div>
@@ -24,7 +27,7 @@ const placeholders = Math.max(0, 3 - visible.length);
     <button class="gallery-item" style="display:none" type="button" data-full={img} data-alt={`${p.name}, fotografía ${i + 6}`} aria-label={`Ampliar fotografía ${i + 6}`}></button>
   ))}
 </div>
-<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Galería de fotografías">
+<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Galería de fotografías">
   <button class="lightbox-btn lightbox-close" type="button" aria-label="Cerrar galería"><Icon name="x" /></button>
   <button class="lightbox-btn lightbox-prev" type="button" aria-label="Fotografía anterior"><span style="transform:rotate(180deg)"><Icon name="chevron" /></span></button>
   <img class="lightbox-image" id="lightbox-image" src="" alt="" />

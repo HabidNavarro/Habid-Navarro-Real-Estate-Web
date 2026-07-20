@@ -22,7 +22,7 @@ const selected = [p, ...properties.filter((x) => x.slug !== p.slug).slice(0, 2)]
           <div class="proof-item"><span class="proof-icon"><Icon name="pin" size={16} /></span>Conocimiento local</div>
         </div>
       </div>
-      <div class="hero-visual" aria-label={`Propiedad destacada: ${p.name}`}>
+      <div class="hero-visual">
         <a class="hero-main-photo" href={`/propiedades/${p.slug}`}><img src={cardImage(p)} alt={`Fachada de ${p.name}`} width="900" height="1100" /><span class="hero-property-caption"><small>Propiedad disponible</small><strong>{p.name}</strong><span>{p.location} · {p.municipality}</span></span></a>
         <div class="hero-price-card"><small>Precio publicado</small><strong>{p.price}</strong><span><i class="hero-kicker-dot"></i>{active.length} {active.length === 1 ? 'propiedad activa' : 'propiedades activas'}</span></div>
         <div class="hero-brand-orbit"><img src="/img/brand/logo-mark.svg" alt="" aria-hidden="true" /></div>

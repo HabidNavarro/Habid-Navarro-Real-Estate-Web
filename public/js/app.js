@@ -103,7 +103,7 @@
     lightbox.classList.remove('open');
     lightbox.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('lightbox-open');
-    galleryButtons[galleryIndex]?.focus();
+    galleryButtons[Math.min(galleryIndex, 4)]?.focus();
   };
 
   galleryButtons.forEach((button, index) => button.addEventListener('click', () => openLightbox(index)));

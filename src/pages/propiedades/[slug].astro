@@ -5,7 +5,7 @@ import EstadoBadge from '../../components/EstadoBadge.astro';
 import Gallery from '../../components/Gallery.astro';
 import PropertyCard from '../../components/PropertyCard.astro';
 import CtaBand from '../../components/CtaBand.astro';
-import { properties, site, waLink, cardImage, type Property } from '../../data/content';
+import { properties, site, waLink, type Property } from '../../data/content';
 
 export function getStaticPaths() {
   return properties.map((p) => ({ params: { slug: p.slug }, props: { p } }));
@@ -16,7 +16,7 @@ const message = `Hola Habid, me interesa ${p.name} en ${p.municipality} y quisie
 const related = properties.filter((x) => x.slug !== p.slug).slice(0, 3);
 const mapUrl = p.map_query ? `https://www.google.com/maps?q=${encodeURIComponent(p.map_query)}&output=embed` : '';
 ---
-<BaseLayout title={`${p.name} | Habid Navarro Bienes Raíces`} description={p.summary} image={cardImage(p)}>
+<BaseLayout title={`${p.name} | Habid Navarro Bienes Raíces`} description={p.summary} image={p.images[0] ?? '/img/og-default.jpg'}>
   <section class="detail-top">
     <div class="container">
       <div class="breadcrumbs"><span><a href="/">Inicio</a></span><span><a href="/propiedades">Propiedades</a></span><span>{p.name}</span></div>

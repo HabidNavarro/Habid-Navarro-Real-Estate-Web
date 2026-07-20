@@ -13,7 +13,7 @@ const municipalities = [...new Set(properties.map((p) => p.municipality))].sort(
   </PageHero>
   <div class="filter-bar">
     <div class="container filter-grid">
-      <label class="field-shell" for="property-search"><Icon name="search" size={18} /><input id="property-search" type="search" placeholder="Buscar por zona, municipio o tipo…" autocomplete="off" /></label>
+      <label class="field-shell" for="property-search"><Icon name="search" size={18} /><input id="property-search" type="search" placeholder="Buscar por zona, municipio o tipo…" aria-label="Buscar propiedades" autocomplete="off" /></label>
       <label class="field-shell" for="property-status"><Icon name="filter" size={18} /><select id="property-status" aria-label="Filtrar por estado"><option value="all">Todos los estados</option><option value="venta">En venta</option><option value="apartada">Apartadas</option><option value="vendida">Vendidas</option></select></label>
       <label class="field-shell" for="property-municipality"><Icon name="pin" size={18} /><select id="property-municipality" aria-label="Filtrar por municipio"><option value="all">Todos los municipios</option>{municipalities.map((m) => <option value={m}>{m}</option>)}</select></label>
     </div>
