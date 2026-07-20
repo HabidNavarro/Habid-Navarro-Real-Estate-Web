@@ -14,7 +14,7 @@ npm run dev      # abre http://localhost:4321
 
 ```bash
 npm run build    # genera dist/
-npm test         # compila y valida el HTML generado (13 pruebas)
+npm test         # compila y valida el HTML generado (20 pruebas)
 npm run preview  # sirve dist/ para revisión
 ```
 
@@ -25,8 +25,8 @@ npm run preview  # sirve dist/ para revisión
   la ubicación exacta). Para el mapa, pega el `<iframe>` de Google Maps en el campo
   `mapaEmbed`.
 - **Fotos:** las fotos reales viven en `public/img/ocotlan/` (`ocotlan-1.jpg` …
-  `ocotlan-11.jpg`); reemplázalas o agrega nuevas y actualiza `galeria` en
-  `propiedades.ts`. La primera de `galeria` es la portada (hero, tarjeta y compartir).
+  `ocotlan-11.jpg`); reemplázalas o agrega nuevas y actualiza la lista `images` en
+  `data/properties.json`. La primera de `images` es la portada (hero, tarjeta y compartir).
   Cambia también `public/img/og-default.jpg` por una buena foto para compartir en
   redes/WhatsApp.
 - **Foto de Habid:** reemplaza `public/img/ui/profile-placeholder.svg` por una foto real
@@ -57,11 +57,12 @@ En Cloudflare: **Registrar → Register Domain**; y como el sitio ya vive en Pag
 
 ```
 src/
-  data/        site.ts (marca/contacto), propiedades.ts (catálogo)
+  data/        content.ts (wrapper tipado)
   components/   logo, nav, footer, WhatsApp, hero, tarjetas, galería, etc.
   layouts/      BaseLayout.astro (estructura común + SEO)
   pages/        index, propiedades/, sobre-mi, contacto, aviso-de-privacidad
   styles/       global.css (design tokens "Oscuro Premium")
+data/           site.json (marca/contacto), properties.json (catálogo)
 public/         favicon, robots.txt, imágenes
 tests/          site.test.mjs (valida el HTML compilado)
 ```
