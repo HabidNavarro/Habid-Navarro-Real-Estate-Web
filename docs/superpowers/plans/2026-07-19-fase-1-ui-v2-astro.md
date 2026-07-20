@@ -256,6 +256,8 @@ ls public/img/brand public/img/ui public/js
 
 Expected: se listan 3 SVG de marca, 2 SVG de ui y `app.js`. Verificado: `styles.css` no contiene `url()` ni guiones largos, y `app.js` no referencia rutas de assets; se copian sin cambios.
 
+Nota (ajuste posterior, hallazgo del review final): en `public/js/app.js`, `closeLightbox` debe devolver el foco a un botón visible de la galería (los botones a partir del sexto están con `display:none`), limitando el índice: `galleryButtons[Math.min(galleryIndex, 4)]?.focus()`.
+
 - [ ] **Step 2: Reescribir Icon.astro con el set del v2**
 
 Reemplazar `src/components/Icon.astro` por:
@@ -561,7 +563,7 @@ interface Props { property: Property; filters?: boolean; }
 const { property: p, filters = false } = Astro.props;
 const href = `/propiedades/${p.slug}`;
 const image = cardImage(p);
-const searchText = [p.name, p.municipality, p.location, p.type, p.bedrooms, p.price].join(' ');
+const searchText = [p.name, p.municipality, p.state, p.status, p.location, p.type, p.bedrooms, p.price].join(' ');
 ---
 <article
   class="property-card reveal"
@@ -636,19 +638,22 @@ import Icon from './Icon.astro';
 import type { Property } from '../data/content';
 interface Props { property: Property; }
 const { property: p } = Astro.props;
-const images = p.images.length ? p.images : ['/img/ui/no-photo.svg'];
+const hasPhotos = p.images.length > 0;
+const images = hasPhotos ? p.images : ['/img/ui/no-photo.svg'];
 const visible = images.slice(0, 5);
 const hidden = images.slice(5);
-const placeholders = Math.max(0, 3 - visible.length);
+const placeholders = Math.max(0, 5 - visible.length);
 ---
 <div class="gallery">
-  {visible.map((img, i) => (
+  {visible.map((img, i) => hasPhotos ? (
     <button class="gallery-item" type="button" data-full={img} data-alt={`${p.name}, fotografía ${i + 1}`} aria-label={`Ampliar fotografía ${i + 1}`}>
       <img src={img} alt={`${p.name}, fotografía ${i + 1}`} width="1000" height="700" />
       {i === visible.length - 1 && images.length > 1 && (
         <span class="gallery-count"><Icon name="camera" size={15} /> Ver {images.length} fotos</span>
       )}
     </button>
+  ) : (
+    <div class="gallery-item" aria-hidden="true"><img src={img} alt="" width="1000" height="700" /></div>
   ))}
   {Array.from({ length: placeholders }).map(() => (
     <div class="gallery-item" aria-hidden="true"><img src="/img/ui/no-photo.svg" alt="" width="1000" height="700" /></div>
@@ -657,7 +662,7 @@ const placeholders = Math.max(0, 3 - visible.length);
     <button class="gallery-item" style="display:none" type="button" data-full={img} data-alt={`${p.name}, fotografía ${i + 6}`} aria-label={`Ampliar fotografía ${i + 6}`}></button>
   ))}
 </div>
-<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Galería de fotografías">
+<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Galería de fotografías">
   <button class="lightbox-btn lightbox-close" type="button" aria-label="Cerrar galería"><Icon name="x" /></button>
   <button class="lightbox-btn lightbox-prev" type="button" aria-label="Fotografía anterior"><span style="transform:rotate(180deg)"><Icon name="chevron" /></span></button>
   <img class="lightbox-image" id="lightbox-image" src="" alt="" />
@@ -695,7 +700,7 @@ const selected = [p, ...properties.filter((x) => x.slug !== p.slug).slice(0, 2)]
           <div class="proof-item"><span class="proof-icon"><Icon name="pin" size={16} /></span>Conocimiento local</div>
         </div>
       </div>
-      <div class="hero-visual" aria-label={`Propiedad destacada: ${p.name}`}>
+      <div class="hero-visual">
         <a class="hero-main-photo" href={`/propiedades/${p.slug}`}><img src={cardImage(p)} alt={`Fachada de ${p.name}`} width="900" height="1100" /><span class="hero-property-caption"><small>Propiedad disponible</small><strong>{p.name}</strong><span>{p.location} · {p.municipality}</span></span></a>
         <div class="hero-price-card"><small>Precio publicado</small><strong>{p.price}</strong><span><i class="hero-kicker-dot"></i>{active.length} {active.length === 1 ? 'propiedad activa' : 'propiedades activas'}</span></div>
         <div class="hero-brand-orbit"><img src="/img/brand/logo-mark.svg" alt="" aria-hidden="true" /></div>
@@ -747,7 +752,7 @@ const municipalities = [...new Set(properties.map((p) => p.municipality))].sort(
   </PageHero>
   <div class="filter-bar">
     <div class="container filter-grid">
-      <label class="field-shell" for="property-search"><Icon name="search" size={18} /><input id="property-search" type="search" placeholder="Buscar por zona, municipio o tipo…" autocomplete="off" /></label>
+      <label class="field-shell" for="property-search"><Icon name="search" size={18} /><input id="property-search" type="search" placeholder="Buscar por zona, municipio o tipo…" aria-label="Buscar propiedades" autocomplete="off" /></label>
       <label class="field-shell" for="property-status"><Icon name="filter" size={18} /><select id="property-status" aria-label="Filtrar por estado"><option value="all">Todos los estados</option><option value="venta">En venta</option><option value="apartada">Apartadas</option><option value="vendida">Vendidas</option></select></label>
       <label class="field-shell" for="property-municipality"><Icon name="pin" size={18} /><select id="property-municipality" aria-label="Filtrar por municipio"><option value="all">Todos los municipios</option>{municipalities.map((m) => <option value={m}>{m}</option>)}</select></label>
     </div>
@@ -789,7 +794,7 @@ const message = `Hola Habid, me interesa ${p.name} en ${p.municipality} y quisie
 const related = properties.filter((x) => x.slug !== p.slug).slice(0, 3);
 const mapUrl = p.map_query ? `https://www.google.com/maps?q=${encodeURIComponent(p.map_query)}&output=embed` : '';
 ---
-<BaseLayout title={`${p.name} | Habid Navarro Bienes Raíces`} description={p.summary} image={cardImage(p)}>
+<BaseLayout title={`${p.name} | Habid Navarro Bienes Raíces`} description={p.summary} image={p.images[0] ?? '/img/og-default.jpg'}>
   <section class="detail-top">
     <div class="container">
       <div class="breadcrumbs"><span><a href="/">Inicio</a></span><span><a href="/propiedades">Propiedades</a></span><span>{p.name}</span></div>
