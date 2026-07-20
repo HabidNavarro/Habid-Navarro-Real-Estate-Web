@@ -203,8 +203,10 @@ Nota: `astro/tsconfigs/strict` ya permite importar JSON; si el editor marcara er
 En `package.json`, cambiar la línea del script `test`:
 
 ```json
-"test": "astro build && node --test tests/"
+"test": "astro build && node --test tests/*.mjs"
 ```
+
+Nota (corregido durante la ejecución): la forma de directorio `node --test tests/` falla en Node 24 en Windows con MODULE_NOT_FOUND; el patrón `tests/*.mjs` lo expande el propio runner de Node 21+ (no depende del shell) y funciona. La máquina local corre Node 24; el `.node-version` con Node 20 solo aplica al build de Cloudflare, que no corre tests.
 
 - [ ] **Step 7: Verificar suite completa en verde**
 
