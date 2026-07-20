@@ -1,42 +1,38 @@
 ---
-import { site, waLink } from '../data/site';
-import BrandLogo from './BrandLogo.astro';
+import Icon from './Icon.astro';
+import { site, nav, waLink } from '../data/content';
+const defaultWa = waLink();
 const year = new Date().getFullYear();
 ---
-<footer class="footer">
-  <div class="container footer-grid">
-    <div>
-      <BrandLogo height={30} />
-      <p class="muted footer-tag">{site.tagline}</p>
+<footer class="site-footer">
+  <div class="container footer-main">
+    <div class="footer-brand">
+      <img src="/img/brand/logo-horizontal-light.svg" width="420" height="72" alt="Habid Navarro Bienes Raíces" />
+      <p>{site.tagline}. Información clara, acompañamiento directo y decisiones inmobiliarias con contexto.</p>
+      <div class="footer-social">
+        <a class="social-link" href={site.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram"><Icon name="instagram" /></a>
+        <a class="social-link" href={defaultWa} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><Icon name="whatsapp" /></a>
+        <a class="social-link" href={`mailto:${site.email}`} aria-label="Correo electrónico"><Icon name="mail" /></a>
+      </div>
     </div>
     <div class="footer-col">
-      <h3 class="footer-h">Contacto</h3>
-      <a href={waLink()} target="_blank" rel="noopener">WhatsApp</a>
-      <a href={`tel:${site.telefono}`}>{site.telefonoDisplay}</a>
-      <a href={`mailto:${site.email}`}>{site.email}</a>
+      <h3>Navegación</h3>
+      <div class="footer-links">
+        {nav.map((item) => <a href={item.href}>{item.label}</a>)}
+      </div>
     </div>
     <div class="footer-col">
-      <h3 class="footer-h">Sígueme</h3>
-      <a href={site.instagram} target="_blank" rel="noopener">Instagram {site.instagramHandle}</a>
-      {site.facebook
-        ? <a href={site.facebook} target="_blank" rel="noopener">Facebook</a>
-        : <span class="muted">Facebook (próximamente)</span>}
+      <h3>Contacto</h3>
+      <div class="footer-links">
+        <a href={`tel:${site.phone}`}>{site.phone_display}</a>
+        <a href={`mailto:${site.email}`}>{site.email}</a>
+        <a href={site.instagram} target="_blank" rel="noopener noreferrer">{site.instagram_handle}</a>
+        <span>{site.service_area}, México</span>
+      </div>
     </div>
   </div>
   <div class="container footer-bottom">
-    <span class="muted">© {year} {site.marca}. {site.zona}.</span>
-    <a href="/aviso-de-privacidad" class="muted">Aviso de privacidad</a>
+    <span>© <span id="current-year">{year}</span> Habid Navarro Bienes Raíces.</span>
+    <div class="footer-bottom-links"><a href="/aviso-de-privacidad">Aviso de privacidad</a><a href="/contacto">Contacto</a></div>
   </div>
 </footer>
-<style>
-  .footer{border-top:1px solid var(--border);background:var(--surface);margin-top:0}
-  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:30px;padding:56px 22px 30px}
-  .footer-tag{margin-top:14px;max-width:260px;font-size:15px}
-  .footer-col{display:flex;flex-direction:column;gap:11px}
-  .footer-col a{font-size:15px;color:var(--muted);transition:color .18s ease}
-  .footer-h{font-size:13px;font-weight:600;letter-spacing:-.01em;color:var(--text);margin-bottom:6px}
-  .footer-col a:hover{color:var(--accent)}
-  .footer-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:22px;border-top:1px solid var(--border);font-size:13px}
-  .footer-bottom a:hover{color:var(--accent)}
-  @media(max-width:680px){.footer-grid{grid-template-columns:1fr;gap:26px}}
-</style>

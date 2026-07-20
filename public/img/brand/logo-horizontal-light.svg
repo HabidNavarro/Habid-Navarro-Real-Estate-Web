@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 72" role="img" aria-labelledby="title desc">
+  <title id="title">Habid Navarro Bienes Raíces</title>
+  <desc id="desc">Isotipo de casa en azul y nombre Habid Navarro en blanco.</desc>
+  <g transform="translate(2 9) scale(1.15)">
+    <polyline points="5,40 5,23 19,9" fill="none" stroke="#5AA8EB" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+    <polyline points="15,40 15,21 34,7 53,21 53,40" fill="none" stroke="#61D1FF" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+  </g>
+  <g font-family="Inter, Arial, sans-serif">
+    <text x="84" y="33" font-size="25" font-weight="750" letter-spacing="3.5" fill="#FFFFFF">HABID</text>
+    <text x="188" y="33" font-size="25" font-weight="520" letter-spacing="3.5" fill="#B8C8D9">NAVARRO</text>
+    <text x="86" y="55" font-size="10.5" font-weight="650" letter-spacing="4.2" fill="#61D1FF">BIENES RAÍCES</text>
+  </g>
+</svg>

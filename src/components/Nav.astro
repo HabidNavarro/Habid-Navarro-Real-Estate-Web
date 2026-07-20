@@ -1,49 +1,28 @@
 ---
-import { nav, site, waLink } from '../data/site';
-import BrandLogo from './BrandLogo.astro';
-const path = Astro.url.pathname;
-const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
+import Icon from './Icon.astro';
+import { nav, waLink } from '../data/content';
+const defaultWa = waLink();
+const current = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isCurrent = (href: string) => (href === '/' ? current === '/' : current.startsWith(href));
 ---
-<header class="nav">
-  <div class="container nav-inner">
-    <a href="/" class="brand" aria-label={site.marca}><BrandLogo height={28} /></a>
-    <nav class="nav-links" aria-label="Principal">
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label="Habid Navarro Bienes Raíces, inicio">
+      <img src="/img/brand/logo-horizontal.svg" width="420" height="72" alt="Habid Navarro Bienes Raíces" />
+    </a>
+    <nav class="desktop-nav" aria-label="Navegación principal">
       {nav.map((item) => (
-        <a href={item.href} class:list={['nav-link', { active: isActive(item.href) }]}>{item.label}</a>
+        <a class="nav-link" href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.label}</a>
       ))}
     </nav>
-    <div class="nav-end">
-      <a class="nav-wa" href={waLink()} target="_blank" rel="noopener">WhatsApp</a>
-      <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
-    </div>
+    <a class="btn btn-primary btn-sm header-cta" href={defaultWa} target="_blank" rel="noopener noreferrer"><Icon name="whatsapp" size={17} /> Hablar por WhatsApp</a>
+    <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-navigation"><span></span></button>
   </div>
+  <nav class="mobile-nav" id="mobile-navigation" aria-label="Navegación móvil">
+    <div class="mobile-nav-inner">
+      {nav.map((item) => <a class="nav-link" href={item.href}>{item.label}</a>)}
+      <a class="btn btn-primary" href={defaultWa} target="_blank" rel="noopener noreferrer"><Icon name="whatsapp" /> Hablar por WhatsApp</a>
+    </div>
+  </nav>
 </header>
-<style>
-  .nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.78);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--border)}
-  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px;gap:20px}
-  .nav-links{display:flex;gap:32px}
-  .nav-link{position:relative;font-size:15px;color:var(--muted);font-weight:400;padding:6px 0;transition:color .18s}
-  .nav-link::after{content:"";position:absolute;left:0;right:100%;bottom:-1px;height:1.5px;background:var(--accent);transition:right .25s ease}
-  .nav-link:hover{color:var(--text)}
-  .nav-link.active{color:var(--text)}
-  .nav-link.active::after{right:0}
-  .nav-end{display:flex;align-items:center;gap:12px}
-  .nav-wa{font-size:14px;font-weight:500;color:#fff;background:var(--accent);padding:8px 16px;border-radius:980px;transition:background .18s ease}
-  .nav-wa:hover{background:var(--accent-2)}
-  .nav-toggle{display:none;background:none;border:none;color:var(--text);font-size:22px;cursor:pointer;line-height:1}
-  @media(max-width:760px){
-    .nav-links{position:fixed;inset:64px 0 auto 0;flex-direction:column;background:rgba(255,255,255,.96);backdrop-filter:saturate(180%) blur(20px);padding:20px 22px;gap:18px;border-bottom:1px solid var(--border);transform:translateY(-135%);transition:transform .28s ease}
-    .nav-links.open{transform:translateY(0)}
-    .nav-link::after{display:none}
-    .nav-wa{display:none}
-    .nav-toggle{display:block}
-  }
-</style>
-<script>
-  const t = document.querySelector('.nav-toggle');
-  const l = document.querySelector('.nav-links');
-  t?.addEventListener('click', () => {
-    const open = l?.classList.toggle('open');
-    t.setAttribute('aria-expanded', String(!!open));
-  });
-</script>

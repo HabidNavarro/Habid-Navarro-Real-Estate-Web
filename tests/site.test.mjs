@@ -12,7 +12,7 @@ test('el build genera dist/index.html', () => {
 
 test('home: lang es y etiquetas OG', () => {
   const h = read('index.html');
-  assert.match(h, /<html lang="es"/);
+  assert.match(h, /<html lang="es-MX"/);
   assert.match(h, /property="og:title"/);
   assert.match(h, /property="og:image"/);
   assert.match(h, /name="description"/);
