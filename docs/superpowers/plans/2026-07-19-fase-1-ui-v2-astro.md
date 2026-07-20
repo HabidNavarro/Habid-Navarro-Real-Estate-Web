@@ -10,7 +10,7 @@
 
 ## Global Constraints
 
-- PROHIBIDO el guion largo `—` (U+2014) en todo copy visible, datos y documentos. Donde el v2 lo usa, se sustituye por coma, `·` o punto. Un test lo hace cumplir en Task 5.
+- PROHIBIDO el guion largo (U+2014) en todo copy visible, datos y documentos. Donde el v2 lo usa, se sustituye por coma, `·` o punto. Un test lo hace cumplir en Task 5.
 - Node 20 (ya fijado en `.node-version`).
 - `/sobre-mi` existe pero NO se enlaza en nav ni footer y sigue excluida del sitemap (filtro ya presente en `astro.config.mjs`, no tocar).
 - Rutas absolutas (`/propiedades`, `/img/...`); el v2 usa rutas relativas con prefijo y NO se copian tal cual.
@@ -98,7 +98,7 @@ test('slugs únicos', () => {
 test('sin guiones largos en los datos', () => {
   const raw = readFileSync(root('data/site.json'), 'utf8')
     + readFileSync(root('data/properties.json'), 'utf8');
-  assert.ok(!raw.includes('—'), 'los datos no deben contener guiones largos');
+  assert.ok(!raw.includes(String.fromCharCode(0x2014)), 'los datos no deben contener guiones largos');
 });
 ```
 
@@ -139,7 +139,7 @@ sed -i 's|"assets/img/|"/img/|g' data/properties.json
 grep -c '"/img/' data/properties.json
 ```
 
-Expected: el `grep -c` imprime un número mayor a 20 (todas las rutas de imagen quedaron absolutas). Si `grep -n $'—' data/properties.json` encontrara guiones largos, sustituirlos por coma o `·` (el test de datos lo detecta).
+Expected: el `grep -c` imprime un número mayor a 20 (todas las rutas de imagen quedaron absolutas). Si quedaran guiones largos (U+2014) en los datos, sustituirlos por coma o `·` (el test de datos del Step 1 lo detecta al correr de nuevo).
 
 - [ ] **Step 4: Correr el test y verificar que pasa**
 
@@ -1124,7 +1124,7 @@ test('ninguna página del build contiene guiones largos', () => {
     return full.endsWith('.html') ? [full] : [];
   });
   for (const file of walk(distDir)) {
-    assert.ok(!readFileSync(file, 'utf8').includes('—'), `guion largo en ${file}`);
+    assert.ok(!readFileSync(file, 'utf8').includes(String.fromCharCode(0x2014)), `guion largo en ${file}`);
   }
 });
 ```
