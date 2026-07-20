@@ -12,6 +12,7 @@ const { title, description, image } = Astro.props;
   <head>
     <SEO title={title} description={description} image={image} />
     <script src="/js/app.js" defer is:inline></script>
+    <noscript><style>.reveal{opacity:1 !important;transform:none !important}</style></noscript>
   </head>
   <body>
     <Nav />
