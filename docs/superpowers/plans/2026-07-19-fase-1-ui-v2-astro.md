@@ -432,6 +432,7 @@ const { title, description, image } = Astro.props;
   <head>
     <SEO title={title} description={description} image={image} />
     <script src="/js/app.js" defer is:inline></script>
+    <noscript><style>.reveal{opacity:1 !important;transform:none !important}</style></noscript>
   </head>
   <body>
     <Nav />
@@ -443,6 +444,8 @@ const { title, description, image } = Astro.props;
 ```
 
 El script inline de reveal del layout viejo desaparece: `app.js` ya trae reveal, menú, filtros, lightbox, FAQ y formulario.
+
+Nota (agregado durante la ejecución): el CSS del v2 oculta `.reveal` incondicionalmente y depende de `app.js` para mostrarlo; sin JavaScript el contenido quedaría invisible. El bloque `noscript` del head restaura la visibilidad en ese caso. Hallazgo del review de la Task 2.
 
 - [ ] **Step 7: Borrar BrandLogo.astro y actualizar el test de lang**
 
