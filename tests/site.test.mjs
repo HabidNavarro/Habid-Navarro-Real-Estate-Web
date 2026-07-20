@@ -95,12 +95,17 @@ test('aviso de privacidad existe y menciona derechos ARCO', () => {
   assert.match(read('aviso-de-privacidad/index.html'), /ARCO/);
 });
 
-test('assets: favicon, og e imágenes de muestra presentes en dist', () => {
+test('assets: favicon, og, marca e imágenes presentes en dist', () => {
   assert.ok(exists('favicon.svg'), 'falta favicon.svg');
   assert.ok(exists('robots.txt'), 'falta robots.txt');
   assert.ok(exists('img/og-default.jpg'), 'falta og-default.jpg');
   assert.ok(exists('img/ocotlan/ocotlan-1.jpg'), 'falta ocotlan-1.jpg');
-  assert.ok(exists('img/placeholder/habid.svg'), 'falta habid.svg');
+  assert.ok(exists('img/brand/logo-horizontal.svg'), 'falta logo horizontal');
+  assert.ok(exists('img/brand/logo-mark.svg'), 'falta logo mark');
+  assert.ok(exists('img/ui/no-photo.svg'), 'falta no-photo.svg');
+  assert.ok(exists('img/ui/profile-placeholder.svg'), 'falta profile-placeholder.svg');
+  assert.ok(exists('js/app.js'), 'falta app.js');
+  assert.ok(exists('404.html'), 'falta 404.html');
 });
 
 test('sitemap generado', () => {

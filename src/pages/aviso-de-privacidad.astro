@@ -1,25 +1,30 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { site } from '../data/site';
+import PageHero from '../components/PageHero.astro';
+import { site } from '../data/content';
 ---
-<BaseLayout title="Aviso de privacidad" description="Aviso de privacidad de Habid Navarro Bienes Raíces.">
+<BaseLayout title="Aviso de privacidad | Habid Navarro" description="Aviso de privacidad y funcionamiento de los canales de contacto de Habid Navarro Bienes Raíces.">
+  <PageHero title="Aviso de privacidad." crumbs={[{ label: 'Inicio', href: '/' }, { label: 'Aviso de privacidad' }]}>
+    <p>Información general sobre el uso de datos y canales de contacto de este sitio.</p>
+  </PageHero>
   <section class="section">
-    <div class="container legal">
-      <h1 class="sec-title">Aviso de privacidad</h1>
-      <p>En cumplimiento con la Ley Federal de Protección de Datos Personales en Posesión de los Particulares, {site.marca} ("el Responsable") informa lo siguiente:</p>
-      <h2 class="sub-h">Datos que recabamos</h2>
-      <p>Cuando nos contactas por WhatsApp, llamada o correo, podemos recabar tu nombre, teléfono y correo electrónico, con la única finalidad de atender tu solicitud y brindarte información sobre propiedades.</p>
-      <h2 class="sub-h">Uso de tus datos</h2>
-      <p>Tus datos se utilizan exclusivamente para responder tu consulta y darte seguimiento. No los compartimos ni vendemos a terceros.</p>
-      <h2 class="sub-h">Tus derechos (ARCO)</h2>
-      <p>Puedes solicitar el acceso, rectificación, cancelación u oposición al uso de tus datos escribiendo a <a class="lnk" href={`mailto:${site.email}`}>{site.email}</a>.</p>
-      <p class="muted upd">Última actualización: junio de 2026.</p>
-    </div>
+    <article class="narrow privacy-content">
+      <h2>Responsable</h2>
+      <p>Habid Navarro Bienes Raíces es responsable del tratamiento de la información que una persona decida compartir mediante los canales de contacto publicados en este sitio.</p>
+      <h2>Información recabada</h2>
+      <p>Este sitio no almacena información en una base de datos propia. El formulario de contacto únicamente construye un mensaje y abre WhatsApp en el dispositivo de la persona usuaria.</p>
+      <p>Al contactar por WhatsApp, teléfono, correo electrónico o Instagram, el tratamiento de la información también queda sujeto a las condiciones de la plataforma utilizada.</p>
+      <h2>Finalidades</h2>
+      <ul>
+        <li>Responder solicitudes de información inmobiliaria.</li>
+        <li>Coordinar conversaciones o visitas.</li>
+        <li>Dar seguimiento a una propiedad específica.</li>
+        <li>Atender solicitudes relacionadas con compra, venta u orientación.</li>
+      </ul>
+      <h2>Derechos ARCO y contacto</h2>
+      <p>Para ejercer los derechos ARCO (acceso, rectificación, cancelación y oposición) sobre la información compartida directamente, escribe a <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+      <h2>Actualizaciones</h2>
+      <p>Este aviso puede modificarse cuando cambien las funciones del sitio o los canales de atención. Última actualización: julio de 2026.</p>
+    </article>
   </section>
 </BaseLayout>
-<style>
-  .legal{max-width:760px}
-  .legal p{font-size:16px;margin-top:8px}
-  .legal .lnk{color:var(--accent)}
-  .upd{margin-top:28px}
-</style>

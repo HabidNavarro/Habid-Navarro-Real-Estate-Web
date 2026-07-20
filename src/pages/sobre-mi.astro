@@ -1,31 +1,36 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import PageHero from '../components/PageHero.astro';
 import CtaBand from '../components/CtaBand.astro';
-import { site } from '../data/site';
 ---
-<BaseLayout title="Sobre mí" description={site.tagline}>
+<BaseLayout title="Sobre Habid Navarro | Bienes Raíces en Jalisco" description="Conoce el enfoque de Habid Navarro: asesoría inmobiliaria directa, transparente y sin presión en Jalisco.">
+  <PageHero title="Asesoría cercana, información directa." crumbs={[{ label: 'Inicio', href: '/' }, { label: 'Sobre mí' }]}>
+    <p>Una relación inmobiliaria funciona mejor cuando sabes con quién hablas, qué puedes esperar y cómo se tomarán las decisiones.</p>
+  </PageHero>
   <section class="section">
-    <div class="container about">
-      <div class="about-photo card reveal"><img src="/img/placeholder/habid.svg" alt="Habid Navarro" /></div>
-      <div class="about-text reveal">
-        <p class="eyebrow">Sobre mí</p>
-        <h1 class="sec-title">Habid Navarro</h1>
-        <p class="about-tag muted">{site.tagline}</p>
-        <p>Soy Habid Navarro, asesor inmobiliario en Jalisco. Acompaño a mis clientes a encontrar el terreno o la propiedad correcta para invertir y vivir mejor, con asesoría honesta y cero presión, desde la primera visita hasta la firma.</p>
-        <p>Conozco a fondo las zonas de mayor plusvalía de Jalisco, de la Zona Metropolitana de Guadalajara y Zapopan a Ocotlán y la región Ciénega. Mi compromiso es simple: información clara, trato cercano y una decisión de inversión fácil y segura.</p>
-        <a class="btn btn-primary" href="/contacto">Hablemos</a>
+    <div class="container about-grid">
+      <div class="about-photo reveal"><img src="/img/ui/profile-placeholder.svg" alt="Espacio preparado para la fotografía profesional de Habid Navarro" width="760" height="920" /></div>
+      <div class="about-copy">
+        <span class="eyebrow">Habid Navarro</span>
+        <h2>Tu decisión merece contexto, no presión.</h2>
+        <p>Mi forma de trabajar parte de una idea sencilla: una propiedad no debe venderse sólo con fotografías atractivas. También necesita información ordenada, expectativas realistas y una conversación honesta sobre lo que sí ofrece.</p>
+        <p>Trabajo como asesor inmobiliario en Jalisco, con atención directa. Escucho lo que buscas, te ayudo a organizar criterios y presento cada opción con claridad para que puedas decidir con calma.</p>
+        <p>Este sitio también refleja ese enfoque: estados visibles, fichas comprensibles, contacto inmediato y una separación explícita entre inventario activo y referencias de catálogo.</p>
+        <div class="about-signature"><img src="/img/brand/logo-mark.svg" alt="" /><div><strong>Habid Navarro</strong><span>Bienes Raíces · Jalisco</span></div></div>
+      </div>
+    </div>
+  </section>
+  <section class="section surface-blue">
+    <div class="container">
+      <div class="section-head"><div class="section-head-copy"><span class="eyebrow">Principios</span><h2 class="section-title">Qué puedes esperar al trabajar conmigo.</h2></div></div>
+      <div class="values-grid">
+        <article class="value-card reveal"><span class="value-icon"><Icon name="chat" /></span><h3>Comunicación clara</h3><p>Respuestas directas y acuerdos entendibles durante el proceso.</p></article>
+        <article class="value-card reveal"><span class="value-icon"><Icon name="shield" /></span><h3>Transparencia</h3><p>Información relevante antes de avanzar a una visita o negociación.</p></article>
+        <article class="value-card reveal"><span class="value-icon"><Icon name="compass" /></span><h3>Criterio local</h3><p>Atención a la ubicación, servicios, uso y potencial de cada zona.</p></article>
+        <article class="value-card reveal"><span class="value-icon"><Icon name="heart" /></span><h3>Respeto por tu ritmo</h3><p>Una decisión inmobiliaria importante no debe sentirse apresurada.</p></article>
       </div>
     </div>
   </section>
   <CtaBand />
 </BaseLayout>
-<style>
-  .about{display:grid;grid-template-columns:0.8fr 1.2fr;gap:40px;align-items:start}
-  .about-photo{overflow:hidden;aspect-ratio:4/5}
-  .about-photo img{width:100%;height:100%;object-fit:cover}
-  .about-text{display:flex;flex-direction:column;gap:16px}
-  .about-text p{font-size:17px}
-  .about-tag{font-size:18px;margin-top:-4px}
-  .about-text .btn{align-self:flex-start;margin-top:6px}
-  @media(max-width:760px){.about{grid-template-columns:1fr;gap:24px}.about-photo{max-width:280px}}
-</style>

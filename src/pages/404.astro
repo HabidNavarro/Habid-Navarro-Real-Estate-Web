@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+---
+<BaseLayout title="Página no encontrada | Habid Navarro" description="La página solicitada no existe.">
+  <section class="error-page">
+    <div>
+      <div class="error-mark">404</div>
+      <h1>Esta propiedad no está aquí.</h1>
+      <p>La dirección puede haber cambiado o la página ya no existe. Regresa al catálogo para continuar.</p>
+      <a class="btn btn-primary" href="/">Volver al inicio <Icon name="arrow" /></a>
+    </div>
+  </section>
+</BaseLayout>
