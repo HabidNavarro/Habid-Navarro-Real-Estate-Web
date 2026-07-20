@@ -1,0 +1,186 @@
+[
+  {
+    "slug": "casa-ocotlan",
+    "name": "Casa en Ocotlán",
+    "status": "En venta",
+    "status_key": "venta",
+    "collection": "disponible",
+    "featured": true,
+    "type": "Casa",
+    "bedrooms": "2 recámaras",
+    "bathrooms": "Por confirmar",
+    "price": "$2,500,000",
+    "area": "108.1 m²",
+    "location": "Islas Vírgenes 284-C",
+    "municipality": "Ocotlán",
+    "state": "Jalisco",
+    "summary": "Casa de concreto colado sobre placa estructural, preparada para crecer hasta tres niveles y ubicada frente a parque.",
+    "description": [
+      "Casa sólida en Ocotlán, construida en concreto colado sobre placa estructural. El terreno mide 108.1 m², con 6 metros de frente por 18 metros de fondo, y la estructura está calculada para crecer a dos plantas, más cuarto de servicio y terraza en un tercer nivel.",
+      "La distribución actual integra dos recámaras, cocina de 3 × 3 metros con alacenas de material y madera, área de estudio, salita de TV y espacio previsto para una futura escalera.",
+      "El flujo de servicio conecta la cocina con el cuarto de servicio y la cochera. La propiedad cuenta con aljibe, boiler, protecciones, mosquiteros, patio encementado y cochera bardeada con portón.",
+      "La ubicación frente a parque y la cercanía con servicios de Ocotlán la convierten en una alternativa funcional para vivir y ampliar a largo plazo."
+    ],
+    "amenities": [
+      "2 recámaras",
+      "Cocina con alacenas",
+      "Área de estudio",
+      "Salita de TV",
+      "Cuarto de servicio techado",
+      "Cochera con portón",
+      "Estructura de concreto colado",
+      "Preparada para crecer a 3 niveles",
+      "Aljibe y boiler",
+      "Protecciones y mosquiteros",
+      "Patio sellado y encementado"
+    ],
+    "images": [
+      "/img/ocotlan/ocotlan-1.jpg",
+      "/img/ocotlan/ocotlan-2.jpg",
+      "/img/ocotlan/ocotlan-3.jpg",
+      "/img/ocotlan/ocotlan-4.jpg",
+      "/img/ocotlan/ocotlan-5.jpg",
+      "/img/ocotlan/ocotlan-6.jpg",
+      "/img/ocotlan/ocotlan-7.jpg",
+      "/img/ocotlan/ocotlan-8.jpg",
+      "/img/ocotlan/ocotlan-9.jpg",
+      "/img/ocotlan/ocotlan-11.jpg"
+    ],
+    "map_query": "Islas Vírgenes 284-C, Ocotlán, Jalisco"
+  },
+  {
+    "slug": "casa-zapopan",
+    "name": "Casa en Zapopan",
+    "status": "Apartada",
+    "status_key": "apartada",
+    "collection": "referencia",
+    "featured": false,
+    "type": "Casa",
+    "bedrooms": "3 recámaras",
+    "bathrooms": "2.5 baños",
+    "price": "$4,200,000",
+    "area": "220 m²",
+    "location": "Valle Real",
+    "municipality": "Zapopan",
+    "state": "Jalisco",
+    "summary": "Referencia de residencia contemporánea en Zapopan con jardín, alberca y seguridad privada.",
+    "description": [
+      "Ficha de referencia para mostrar la presentación de propiedades residenciales en Zapopan.",
+      "La información y disponibilidad deben confirmarse directamente antes de cualquier decisión de compra."
+    ],
+    "amenities": ["3 recámaras", "2.5 baños", "Alberca", "Cochera 2 autos", "Jardín", "Seguridad 24/7"],
+    "images": [],
+    "map_query": ""
+  },
+  {
+    "slug": "casa-providencia",
+    "name": "Casa en Providencia",
+    "status": "Vendida",
+    "status_key": "vendida",
+    "collection": "referencia",
+    "featured": false,
+    "type": "Casa",
+    "bedrooms": "4 recámaras",
+    "bathrooms": "3.5 baños",
+    "price": "$6,800,000",
+    "area": "280 m²",
+    "location": "Providencia",
+    "municipality": "Guadalajara",
+    "state": "Jalisco",
+    "summary": "Referencia de vivienda contemporánea en Providencia con espacios abiertos y jardín privado.",
+    "description": [
+      "Referencia de una casa residencial en Providencia, Guadalajara, presentada para mostrar el formato visual del catálogo.",
+      "La ficha conserva el estado de vendida y funciona como antecedente de inventario."
+    ],
+    "amenities": ["4 recámaras", "3.5 baños", "Jardín", "Roof garden", "Cochera 3 autos", "Cocina integral"],
+    "images": [
+      "/img/providencia/providencia-1.jpg",
+      "/img/providencia/providencia-2.jpg",
+      "/img/providencia/providencia-3.jpg",
+      "/img/providencia/providencia-4.jpg",
+      "/img/providencia/providencia-5.jpg"
+    ],
+    "map_query": ""
+  },
+  {
+    "slug": "casa-chapala",
+    "name": "Casa en Chapala",
+    "status": "Apartada",
+    "status_key": "apartada",
+    "collection": "referencia",
+    "featured": false,
+    "type": "Casa",
+    "bedrooms": "3 recámaras",
+    "bathrooms": "2 baños",
+    "price": "$3,100,000",
+    "area": "190 m²",
+    "location": "Ribera de Chapala",
+    "municipality": "Chapala",
+    "state": "Jalisco",
+    "summary": "Referencia de casa de descanso con arquitectura cálida, terraza y jardín en la ribera de Chapala.",
+    "description": [
+      "Referencia de una propiedad de descanso en la ribera de Chapala, con arquitectura tradicional y áreas para disfrutar el clima de la zona.",
+      "La ficha conserva el estado de apartada; la disponibilidad debe confirmarse directamente."
+    ],
+    "amenities": ["3 recámaras", "2 baños", "Vista al lago", "Jardín amplio", "Cochera 2 autos", "Terraza"],
+    "images": [
+      "/img/chapala/chapala-1.jpg",
+      "/img/chapala/chapala-2.jpg",
+      "/img/chapala/chapala-3.jpg",
+      "/img/chapala/chapala-4.jpg"
+    ],
+    "map_query": ""
+  },
+  {
+    "slug": "casa-tlaquepaque",
+    "name": "Casa en Tlaquepaque",
+    "status": "Vendida",
+    "status_key": "vendida",
+    "collection": "referencia",
+    "featured": false,
+    "type": "Casa",
+    "bedrooms": "3 recámaras",
+    "bathrooms": "2 baños",
+    "price": "$2,950,000",
+    "area": "165 m²",
+    "location": "Centro de Tlaquepaque",
+    "municipality": "Tlaquepaque",
+    "state": "Jalisco",
+    "summary": "Referencia de casa de estilo tradicional tapatío con patio central y espacios amplios.",
+    "description": [
+      "Ficha de referencia para una casa de estilo tradicional en San Pedro Tlaquepaque.",
+      "La información se mantiene como ejemplo de una operación cerrada y no representa inventario disponible."
+    ],
+    "amenities": ["3 recámaras", "2 baños", "Patio central", "Cocina integral", "Cochera", "Bodega"],
+    "images": [],
+    "map_query": ""
+  },
+  {
+    "slug": "casa-tlajomulco",
+    "name": "Casa en Tlajomulco",
+    "status": "Apartada",
+    "status_key": "apartada",
+    "collection": "referencia",
+    "featured": false,
+    "type": "Casa",
+    "bedrooms": "2 recámaras",
+    "bathrooms": "1.5 baños",
+    "price": "$1,980,000",
+    "area": "140 m²",
+    "location": "Santa Fe",
+    "municipality": "Tlajomulco",
+    "state": "Jalisco",
+    "summary": "Referencia de casa moderna en coto privado al sur de la Zona Metropolitana de Guadalajara.",
+    "description": [
+      "Referencia de una vivienda moderna en coto privado de Tlajomulco, con distribución funcional y cocina integral.",
+      "La ficha conserva el estado de apartada y la disponibilidad debe confirmarse directamente."
+    ],
+    "amenities": ["2 recámaras", "1.5 baños", "Cochera 2 autos", "Jardín", "Cocina integral", "Caseta de vigilancia"],
+    "images": [
+      "/img/tlajomulco/tlajomulco-1.jpg",
+      "/img/tlajomulco/tlajomulco-2.jpg",
+      "/img/tlajomulco/tlajomulco-3.jpg"
+    ],
+    "map_query": ""
+  }
+]

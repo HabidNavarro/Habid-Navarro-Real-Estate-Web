@@ -7,7 +7,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "test": "astro build && node --test tests/site.test.mjs"
+    "test": "astro build && node --test tests/**/*.mjs"
   },
   "dependencies": {
     "astro": "^5",
