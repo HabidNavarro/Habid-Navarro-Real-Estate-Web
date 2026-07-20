@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync, readdirSync, statSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 
 const dist = (p) => new URL(`../dist/${p}`, import.meta.url);
 const read = (p) => readFileSync(dist(p), 'utf8');
@@ -110,4 +111,16 @@ test('assets: favicon, og, marca e imágenes presentes en dist', () => {
 
 test('sitemap generado', () => {
   assert.ok(exists('sitemap-index.xml') || exists('sitemap-0.xml'), 'falta sitemap');
+});
+
+test('ninguna página del build contiene guiones largos', () => {
+  const distDir = fileURLToPath(new URL('../dist/', import.meta.url));
+  const walk = (dir) => readdirSync(dir).flatMap((name) => {
+    const full = `${dir}/${name}`;
+    if (statSync(full).isDirectory()) return walk(full);
+    return full.endsWith('.html') ? [full] : [];
+  });
+  for (const file of walk(distDir)) {
+    assert.ok(!readFileSync(file, 'utf8').includes(String.fromCharCode(0x2014)), `guion largo en ${file}`);
+  }
 });
