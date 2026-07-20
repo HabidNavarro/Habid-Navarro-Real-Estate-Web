@@ -712,7 +712,7 @@ const selected = [p, ...properties.filter((x) => x.slug !== p.slug).slice(0, 2)]
   <section class="section surface">
     <div class="container">
       <div class="featured-block reveal">
-        <div class="featured-image"><img src={p.images[1]} alt={`Interior de ${p.name}`} loading="lazy" width="1000" height="900" /></div>
+        <div class="featured-image"><img src={p.images[1] ?? cardImage(p)} alt={`Interior de ${p.name}`} loading="lazy" width="1000" height="900" /></div>
         <div class="featured-content"><span class="eyebrow">Propiedad destacada</span><h2>{p.name}</h2><div class="featured-address"><Icon name="pin" size={18} /> {p.location}, {p.municipality}</div><div class="featured-price">{p.price}</div><p class="featured-copy">{p.summary}</p><div class="featured-stats"><div class="featured-stat"><strong>{p.area}</strong><span>Terreno</span></div><div class="featured-stat"><strong>{p.bedrooms}</strong><span>Distribución</span></div><div class="featured-stat"><strong>Hasta 3 niveles</strong><span>Potencial de crecimiento</span></div></div><div class="featured-actions"><a class="btn btn-primary" href={`/propiedades/${p.slug}`}>Ver ficha completa <Icon name="arrow" /></a><a class="btn btn-secondary" href={waLink(`Hola Habid, me interesa ${p.name}.`)} target="_blank" rel="noopener noreferrer">Consultar</a></div></div>
       </div>
     </div>
