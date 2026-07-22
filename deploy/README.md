@@ -23,6 +23,21 @@ git add -A && git commit -m "..." && git push
 
 `actualizar.sh` hace `git pull`, reconstruye el contenedor y verifica que responda 200.
 
+El acceso a GitHub desde el server usa la llave de despliegue `~/.ssh/habid_web_deploy`,
+registrada en el repo con permiso de escritura. Las llaves de despliegue de GitHub son
+por repositorio: la de `pulso_quant` que ya vivia en el server no sirve aqui.
+
+## Ver la vista previa
+
+Publica en **https://dev.habidnavarro.com** (tunel de Cloudflare, con `noindex`).
+
+En la LAN el contenedor escucha solo en el loopback del server, asi que para verlo sin
+pasar por internet hay que tunelizar por ssh:
+
+```bash
+ssh -L 8130:127.0.0.1:8130 miniserver   # luego abrir http://localhost:8130
+```
+
 ## Como esta armado
 
 - **`Dockerfile`**: dos etapas. `node:20-alpine` compila el sitio (`npm ci && npm run build`)
