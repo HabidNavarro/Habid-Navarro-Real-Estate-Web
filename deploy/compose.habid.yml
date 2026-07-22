@@ -7,6 +7,11 @@
 #
 # Red propia `habid_default`, aislada del stack de Toro y del de Pulso, para que un
 # accidente en cualquiera de esos no arrastre a este.
+#
+# `name` explicito a proposito: sin el, Compose deriva el nombre del proyecto de la
+# carpeta contenedora (`deploy/`), que es la misma que usa Pulso. Con ese choque, un
+# `--remove-orphans` desde aqui se llevaria por delante a pulso-app y pulso-db.
+name: habid-web
 
 services:
   habid-web:
