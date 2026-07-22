@@ -1,0 +1,9 @@
+node_modules
+dist
+.astro
+.vite
+.git
+.wrangler
+.superpowers
+docs
+documentos_de_referencia

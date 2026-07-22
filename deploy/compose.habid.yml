@@ -1,0 +1,52 @@
+# Sitio de Habid Navarro Bienes Raices: entorno de taller y vista previa.
+#
+# Produccion sigue en Cloudflare Pages (habidnavarro.com). Esto NO la reemplaza:
+# si el miniserver se apaga, el sitio del cliente sigue en pie.
+#
+#   docker compose -f deploy/compose.habid.yml up -d --build
+#
+# Red propia `habid_default`, aislada del stack de Toro y del de Pulso, para que un
+# accidente en cualquiera de esos no arrastre a este.
+
+services:
+  habid-web:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    image: habid-web:latest
+    container_name: habid-web
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8130:8080"     # solo loopback; lo publico sale por el tunel
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:8080/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    mem_limit: 128m
+    cpus: 0.5
+    networks:
+      - habid_default
+
+  # Expone la vista previa en dev.habidnavarro.com. Mismo patron que `panel-tunel`.
+  habid-web-tunel:
+    image: cloudflare/cloudflared:latest
+    container_name: habid-web-tunel
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run
+    env_file:
+      - /home/habid_mini/stack/secrets/habid_web_tunnel.env
+    depends_on:
+      - habid-web
+    mem_limit: 128m
+    networks:
+      - habid_default
+
+# Cuando haga falta backend, se agrega aqui un servicio `habid-api` en esta misma red
+# y se enruta /api/* hacia el desde deploy/Caddyfile. No hay que rehacer nada de arriba
+# ni cambiar Astro a modo servidor.
+
+networks:
+  habid_default:
+    name: habid_default
