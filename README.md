@@ -1,7 +1,7 @@
 # Habid Navarro Bienes Raíces · Sitio web
 
 Sitio estático hecho con [Astro](https://astro.build). Estilo "Oscuro Premium".
-Mini-sitio de 5 vistas: Inicio, Propiedades, ficha de propiedad, Sobre mí y Contacto.
+Mini-sitio de 4 vistas: Inicio, Propiedades, ficha de propiedad y Contacto.
 
 ## Desarrollo local
 
@@ -14,7 +14,7 @@ npm run dev      # abre http://localhost:4321
 
 ```bash
 npm run build    # genera dist/
-npm test         # compila y valida el HTML generado (20 pruebas)
+npm test         # compila y valida el HTML generado (27 pruebas)
 npm run preview  # sirve dist/ para revisión
 ```
 
@@ -29,12 +29,30 @@ npm run preview  # sirve dist/ para revisión
   `data/properties.json`. La primera de `images` es la portada (hero, tarjeta y compartir).
   Cambia también `public/img/og-default.jpg` por una buena foto para compartir en
   redes/WhatsApp.
-- **Foto de Habid:** reemplaza `public/img/ui/profile-placeholder.svg` por una foto real
-  (por ejemplo `habid.jpg`) y actualiza la ruta en `src/pages/sobre-mi.astro`.
 - **Contacto / redes:** edita `data/site.json`. Cuando tengas la URL de tu página
   de Facebook, ponla en `facebook:` y el enlace aparecerá automáticamente en el footer.
 - **Agregar una propiedad nueva:** copia el objeto dentro del arreglo `propiedades`
   en `data/properties.json`, cambia `slug` y los datos. Su página se genera sola.
+
+## Marcar una propiedad como vendida
+
+Cambia en `data/properties.json` el par de campos `status` y `status_key`:
+
+```json
+"status": "Vendida",
+"status_key": "vendida"
+```
+
+Con eso, y sin tocar nada más, la propiedad queda así en todo el sitio:
+
+- Su tarjeta se muestra en gris y deja de tener enlaces.
+- Al hacer clic aparece un aviso de que fue vendida y de que los datos se retiraron
+  para proteger la privacidad del cliente.
+- Su ficha se sigue generando pero lleva `noindex` y sale del sitemap, así que Google
+  deja de mostrarla.
+
+La casa que quede con `status_key: "venta"` es la que el aviso ofrece como alternativa
+disponible. Debe haber solo una; la prueba `solo casa-ocotlan sigue disponible` lo vigila.
 
 ## Publicar en Cloudflare Pages (gratis)
 
@@ -60,7 +78,7 @@ src/
   data/        content.ts (wrapper tipado)
   components/   logo, nav, footer, WhatsApp, hero, tarjetas, galería, etc.
   layouts/      BaseLayout.astro (estructura común + SEO)
-  pages/        index, propiedades/, sobre-mi, contacto, aviso-de-privacidad
+  pages/        index, propiedades/, contacto, aviso-de-privacidad
   styles/       global.css (design tokens "Oscuro Premium")
 data/           site.json (marca/contacto), properties.json (catálogo)
 public/         favicon, robots.txt, imágenes

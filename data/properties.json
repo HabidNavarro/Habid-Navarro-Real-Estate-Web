@@ -51,8 +51,8 @@
   {
     "slug": "casa-zapopan",
     "name": "Casa en Zapopan",
-    "status": "Apartada",
-    "status_key": "apartada",
+    "status": "Vendida",
+    "status_key": "vendida",
     "collection": "referencia",
     "featured": false,
     "type": "Casa",
@@ -63,10 +63,10 @@
     "location": "Valle Real",
     "municipality": "Zapopan",
     "state": "Jalisco",
-    "summary": "Referencia de residencia contemporánea en Zapopan con jardín, alberca y seguridad privada.",
+    "summary": "Antecedente de residencia contemporánea en Zapopan con jardín, alberca y seguridad privada.",
     "description": [
-      "Ficha de referencia para mostrar la presentación de propiedades residenciales en Zapopan.",
-      "La información y disponibilidad deben confirmarse directamente antes de cualquier decisión de compra."
+      "Antecedente de una residencia contemporánea en Zapopan, conservado como muestra del formato del catálogo.",
+      "La operación ya está cerrada y los datos del cliente se retiraron del sitio."
     ],
     "amenities": ["3 recámaras", "2.5 baños", "Alberca", "Cochera 2 autos", "Jardín", "Seguridad 24/7"],
     "images": [],
@@ -87,10 +87,10 @@
     "location": "Providencia",
     "municipality": "Guadalajara",
     "state": "Jalisco",
-    "summary": "Referencia de vivienda contemporánea en Providencia con espacios abiertos y jardín privado.",
+    "summary": "Antecedente de vivienda contemporánea en Providencia con espacios abiertos y jardín privado.",
     "description": [
-      "Referencia de una casa residencial en Providencia, Guadalajara, presentada para mostrar el formato visual del catálogo.",
-      "La ficha conserva el estado de vendida y funciona como antecedente de inventario."
+      "Antecedente de una casa residencial en Providencia, Guadalajara, conservado como muestra del formato del catálogo.",
+      "La operación ya está cerrada y los datos del cliente se retiraron del sitio."
     ],
     "amenities": ["4 recámaras", "3.5 baños", "Jardín", "Roof garden", "Cochera 3 autos", "Cocina integral"],
     "images": [
@@ -105,8 +105,8 @@
   {
     "slug": "casa-chapala",
     "name": "Casa en Chapala",
-    "status": "Apartada",
-    "status_key": "apartada",
+    "status": "Vendida",
+    "status_key": "vendida",
     "collection": "referencia",
     "featured": false,
     "type": "Casa",
@@ -117,10 +117,10 @@
     "location": "Ribera de Chapala",
     "municipality": "Chapala",
     "state": "Jalisco",
-    "summary": "Referencia de casa de descanso con arquitectura cálida, terraza y jardín en la ribera de Chapala.",
+    "summary": "Antecedente de casa de descanso con arquitectura cálida, terraza y jardín en la ribera de Chapala.",
     "description": [
-      "Referencia de una propiedad de descanso en la ribera de Chapala, con arquitectura tradicional y áreas para disfrutar el clima de la zona.",
-      "La ficha conserva el estado de apartada; la disponibilidad debe confirmarse directamente."
+      "Antecedente de una propiedad de descanso en la ribera de Chapala, con arquitectura tradicional y áreas para disfrutar el clima de la zona.",
+      "La operación ya está cerrada y los datos del cliente se retiraron del sitio."
     ],
     "amenities": ["3 recámaras", "2 baños", "Vista al lago", "Jardín amplio", "Cochera 2 autos", "Terraza"],
     "images": [
@@ -146,10 +146,10 @@
     "location": "Centro de Tlaquepaque",
     "municipality": "Tlaquepaque",
     "state": "Jalisco",
-    "summary": "Referencia de casa de estilo tradicional tapatío con patio central y espacios amplios.",
+    "summary": "Antecedente de casa de estilo tradicional tapatío con patio central y espacios amplios.",
     "description": [
-      "Ficha de referencia para una casa de estilo tradicional en San Pedro Tlaquepaque.",
-      "La información se mantiene como ejemplo de una operación cerrada y no representa inventario disponible."
+      "Antecedente de una casa de estilo tradicional en San Pedro Tlaquepaque.",
+      "La operación ya está cerrada y los datos del cliente se retiraron del sitio."
     ],
     "amenities": ["3 recámaras", "2 baños", "Patio central", "Cocina integral", "Cochera", "Bodega"],
     "images": [],
@@ -158,8 +158,8 @@
   {
     "slug": "casa-tlajomulco",
     "name": "Casa en Tlajomulco",
-    "status": "Apartada",
-    "status_key": "apartada",
+    "status": "Vendida",
+    "status_key": "vendida",
     "collection": "referencia",
     "featured": false,
     "type": "Casa",
@@ -170,10 +170,10 @@
     "location": "Santa Fe",
     "municipality": "Tlajomulco",
     "state": "Jalisco",
-    "summary": "Referencia de casa moderna en coto privado al sur de la Zona Metropolitana de Guadalajara.",
+    "summary": "Antecedente de casa moderna en coto privado al sur de la Zona Metropolitana de Guadalajara.",
     "description": [
-      "Referencia de una vivienda moderna en coto privado de Tlajomulco, con distribución funcional y cocina integral.",
-      "La ficha conserva el estado de apartada y la disponibilidad debe confirmarse directamente."
+      "Antecedente de una vivienda moderna en coto privado de Tlajomulco, con distribución funcional y cocina integral.",
+      "La operación ya está cerrada y los datos del cliente se retiraron del sitio."
     ],
     "amenities": ["2 recámaras", "1.5 baños", "Cochera 2 autos", "Jardín", "Cocina integral", "Caseta de vigilancia"],
     "images": [

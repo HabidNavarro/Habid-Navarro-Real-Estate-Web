@@ -43,6 +43,15 @@ test('exactamente una propiedad destacada y con 2+ fotos', () => {
   assert.ok(destacadas[0].images.length >= 2, 'la destacada necesita 2+ fotos (hero y bloque destacado)');
 });
 
+test('solo casa-ocotlan sigue disponible; el resto está vendida', () => {
+  const disponibles = properties.filter((p) => p.status_key !== 'vendida');
+  assert.deepEqual(disponibles.map((p) => p.slug), ['casa-ocotlan']);
+  for (const p of properties.filter((x) => x.status_key === 'vendida')) {
+    assert.equal(p.status, 'Vendida', `${p.slug}: el texto del estado debe decir "Vendida"`);
+    assert.equal(p.featured, false, `${p.slug}: una vendida no puede ser la destacada`);
+  }
+});
+
 test('slugs únicos', () => {
   const slugs = properties.map((p) => p.slug);
   assert.equal(new Set(slugs).size, slugs.length);

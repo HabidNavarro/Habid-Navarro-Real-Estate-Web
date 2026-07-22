@@ -32,7 +32,7 @@ const selected = [p, ...properties.filter((x) => x.slug !== p.slug).slice(0, 2)]
   <section class="trust-strip" aria-label="Principios del servicio"><div class="container trust-grid"><div class="trust-item"><strong>Asesoría directa</strong><span>Hablas conmigo, no con un sistema</span></div><div class="trust-item"><strong>Información verificable</strong><span>Datos claros antes de avanzar</span></div><div class="trust-item"><strong>Enfoque local</strong><span>Atención en Jalisco</span></div><div class="trust-item"><strong>Sin presión</strong><span>Tu decisión, a tu ritmo</span></div></div></section>
   <section class="section">
     <div class="container">
-      <div class="section-head"><div class="section-head-copy"><span class="eyebrow">Catálogo</span><h2 class="section-title">Propiedades y referencias recientes</h2><p class="section-lead">Una vista rápida del inventario y de operaciones de referencia. Cada ficha distingue claramente su estado.</p></div><a class="text-link" href="/propiedades">Ver catálogo completo <Icon name="arrow" size={17} /></a></div>
+      <div class="section-head"><div class="section-head-copy"><span class="eyebrow">Catálogo</span><h2 class="section-title">La propiedad disponible y operaciones cerradas</h2><p class="section-lead">Una vista rápida de lo que está publicado hoy y de las casas que ya se vendieron. Cada ficha distingue claramente su estado.</p></div><a class="text-link" href="/propiedades">Ver catálogo completo <Icon name="arrow" size={17} /></a></div>
       <div class="property-grid">{selected.map((x) => <PropertyCard property={x} />)}</div>
     </div>
   </section>

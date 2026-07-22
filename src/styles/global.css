@@ -159,6 +159,18 @@ p{text-wrap:pretty}
 .card-arrow{display:grid;width:42px;height:42px;place-items:center;border:1px solid var(--border);border-radius:50%;color:var(--accent);transition:background .2s ease,color .2s ease,border-color .2s ease,transform .2s ease}
 .property-card:hover .card-arrow{background:var(--accent);border-color:var(--accent);color:white;transform:translateX(2px)}
 
+/* Vendidas: tarjeta atenuada, sin enlaces y con aviso al pulsarla */
+.property-card.is-sold{background:var(--surface-2)}
+.property-card.is-sold:hover{transform:none;border-color:var(--border);box-shadow:var(--shadow-xs)}
+.property-card.is-sold .property-media img{filter:grayscale(1) contrast(.92);opacity:.62;transition:opacity .25s ease}
+.property-card.is-sold:hover .property-media img{transform:none;opacity:.74}
+.property-card.is-sold .property-overlay{background:linear-gradient(180deg,rgba(12,41,64,.2),rgba(12,41,64,.48))}
+.property-card.is-sold .property-location{color:#8b8b90}
+.property-card.is-sold .property-title,.property-card.is-sold .property-price strong{color:var(--muted)}
+.sold-flag{display:inline-flex;align-items:center;gap:7px;padding:10px 14px;border:1px solid var(--border);border-radius:999px;background:#fff;color:var(--muted);font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+.sold-trigger{position:absolute;z-index:3;inset:0;width:100%;border:0;background:none;cursor:pointer}
+.sold-trigger:focus-visible{outline:3px solid var(--accent);outline-offset:-3px;border-radius:var(--radius)}
+
 /* Highlight */
 .featured-block{display:grid;grid-template-columns:1.12fr .88fr;overflow:hidden;border:1px solid var(--border);border-radius:var(--radius-xl);background:#fff;box-shadow:var(--shadow)}
 .featured-image{position:relative;min-height:590px;overflow:hidden}
@@ -251,6 +263,9 @@ p{text-wrap:pretty}
 /* Lightbox */
 .lightbox{position:fixed;z-index:1500;inset:0;display:none;place-items:center;padding:28px;background:rgba(3,14,23,.94);backdrop-filter:blur(8px)}.lightbox.open{display:grid}.lightbox-image{max-width:min(1180px,calc(100vw - 120px));max-height:calc(100vh - 100px);object-fit:contain;border-radius:10px;box-shadow:0 30px 100px rgba(0,0,0,.6)}.lightbox-btn{position:absolute;display:grid;width:48px;height:48px;place-items:center;border:1px solid rgba(255,255,255,.18);border-radius:50%;background:rgba(255,255,255,.08);color:white;cursor:pointer;backdrop-filter:blur(8px)}.lightbox-close{right:24px;top:24px}.lightbox-prev{left:24px;top:50%;transform:translateY(-50%)}.lightbox-next{right:24px;top:50%;transform:translateY(-50%)}.lightbox-count{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);padding:8px 13px;border-radius:999px;background:rgba(255,255,255,.1);color:white;font-size:12px}
 
+/* Aviso de propiedad vendida */
+.sold-modal{position:fixed;z-index:1600;inset:0;display:none;place-items:center;padding:22px;background:rgba(3,14,23,.74);backdrop-filter:blur(6px)}.sold-modal.open{display:grid}.sold-modal-panel{position:relative;width:min(470px,100%);padding:40px 34px 32px;border-radius:var(--radius-lg);background:#fff;box-shadow:var(--shadow-lg);text-align:center}.sold-modal-close{position:absolute;right:16px;top:16px;display:grid;width:38px;height:38px;place-items:center;border:1px solid var(--border);border-radius:50%;background:#fff;color:var(--muted);cursor:pointer;transition:border-color .2s ease,color .2s ease}.sold-modal-close:hover{border-color:var(--line);color:var(--text)}.sold-modal-icon{display:inline-grid;width:54px;height:54px;place-items:center;border-radius:50%;background:var(--surface-blue);color:var(--accent)}.sold-modal-title{margin-top:17px;font-size:27px;font-weight:720;letter-spacing:-.03em}.sold-modal-text{margin-top:11px;color:var(--muted);font-size:15px;line-height:1.55}.sold-modal-text strong{color:var(--text);font-weight:700}.sold-modal-actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:25px}
+
 /* Misc */
 .privacy-content h2{margin-top:43px;font-size:28px}.privacy-content h2:first-child{margin-top:0}.privacy-content p,.privacy-content li{margin-top:13px;color:#4f5d67}.privacy-content ul{margin-top:12px;padding-left:20px;list-style:disc}.privacy-content a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
 .error-page{display:grid;min-height:70vh;place-items:center;padding:70px 22px;text-align:center}.error-mark{font-size:clamp(92px,18vw,190px);font-weight:850;line-height:.8;background:var(--gradient);-webkit-background-clip:text;background-clip:text;color:transparent}.error-page h1{margin-top:30px;font-size:40px}.error-page p{max-width:520px;margin:16px auto 0;color:var(--muted)}.error-page .btn{margin-top:28px}
@@ -289,6 +304,7 @@ p{text-wrap:pretty}
   .form-card,.contact-info{padding:27px 21px}.form-grid{grid-template-columns:1fr}.form-group.full{grid-column:auto}
   .footer-main{grid-template-columns:1fr;padding:58px 0 38px}.footer-brand{grid-column:auto}.footer-brand img{width:275px}.footer-bottom{align-items:flex-start;flex-direction:column}.whatsapp-float{right:15px;bottom:15px;padding:13px}.whatsapp-float span{display:none}
   .lightbox{padding:10px}.lightbox-image{max-width:calc(100vw - 20px);max-height:calc(100vh - 100px)}.lightbox-prev{left:10px}.lightbox-next{right:10px}.lightbox-close{right:10px;top:10px}
+  .sold-modal-panel{padding:34px 22px 26px;border-radius:24px}.sold-modal-title{font-size:24px}.sold-modal-actions{display:grid;width:100%}.sold-modal-actions .btn{width:100%}
 }
 
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}.property-card,.property-media img,.btn,.text-link svg{transition:none}}

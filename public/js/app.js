@@ -118,6 +118,40 @@
     if (event.key === 'ArrowRight') showImage(galleryIndex + 1);
   });
 
+  // Propiedades vendidas: la tarjeta no enlaza a ninguna ficha, abre este aviso.
+  const soldModal = $('#sold-modal');
+  const soldModalName = $('#sold-modal-name');
+  let soldReturnFocus = null;
+
+  const closeSoldModal = () => {
+    if (!soldModal) return;
+    soldModal.classList.remove('open');
+    soldModal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('lightbox-open');
+    soldReturnFocus?.focus();
+    soldReturnFocus = null;
+  };
+
+  const openSoldModal = (trigger) => {
+    if (!soldModal) return;
+    soldReturnFocus = trigger;
+    if (soldModalName) soldModalName.textContent = trigger.dataset.soldProperty || 'Esta propiedad';
+    soldModal.classList.add('open');
+    soldModal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('lightbox-open');
+    $('.sold-modal-close', soldModal)?.focus();
+  };
+
+  $$('.sold-trigger').forEach((trigger) => {
+    trigger.addEventListener('click', () => openSoldModal(trigger));
+  });
+  $('.sold-modal-close')?.addEventListener('click', closeSoldModal);
+  $('.sold-modal-dismiss')?.addEventListener('click', closeSoldModal);
+  soldModal?.addEventListener('click', (event) => { if (event.target === soldModal) closeSoldModal(); });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && soldModal?.classList.contains('open')) closeSoldModal();
+  });
+
   $$('.faq-question').forEach((button) => {
     button.addEventListener('click', () => {
       const item = button.closest('.faq-item');

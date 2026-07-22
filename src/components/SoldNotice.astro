@@ -1,0 +1,21 @@
+---
+import Icon from './Icon.astro';
+import { availableProperty } from '../data/content';
+---
+<div class="sold-modal" id="sold-modal" role="dialog" aria-modal="true" aria-labelledby="sold-modal-title" aria-hidden="true">
+  <div class="sold-modal-panel">
+    <button class="sold-modal-close" type="button" aria-label="Cerrar aviso"><Icon name="x" size={19} /></button>
+    <span class="sold-modal-icon"><Icon name="lock" size={22} /></span>
+    <h2 class="sold-modal-title" id="sold-modal-title">Propiedad vendida</h2>
+    <p class="sold-modal-text">
+      <strong id="sold-modal-name">Esta propiedad</strong> ya fue vendida. Sus datos y fotografías
+      se retiraron para proteger la privacidad del cliente.
+    </p>
+    <div class="sold-modal-actions">
+      {availableProperty && (
+        <a class="btn btn-primary" href={`/propiedades/${availableProperty.slug}`}>Ver la propiedad disponible</a>
+      )}
+      <button class="btn btn-secondary sold-modal-dismiss" type="button">Cerrar</button>
+    </div>
+  </div>
+</div>

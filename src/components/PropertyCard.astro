@@ -1,34 +1,48 @@
 ---
 import Icon from './Icon.astro';
 import EstadoBadge from './EstadoBadge.astro';
-import { cardImage, type Property } from '../data/content';
+import { cardImage, isSold, type Property } from '../data/content';
 interface Props { property: Property; filters?: boolean; }
 const { property: p, filters = false } = Astro.props;
 const href = `/propiedades/${p.slug}`;
 const image = cardImage(p);
+const sold = isSold(p);
 const searchText = [p.name, p.municipality, p.state, p.status, p.location, p.type, p.bedrooms, p.price].join(' ');
 ---
 <article
-  class="property-card reveal"
+  class:list={['property-card', 'reveal', sold && 'is-sold']}
   data-filter-card={filters ? '' : undefined}
   data-search={filters ? searchText : undefined}
   data-status={filters ? p.status_key : undefined}
   data-municipality={filters ? p.municipality : undefined}
 >
-  <a class="property-media" href={href} aria-label={`Ver ${p.name}`}>
-    <img src={image} alt={`${p.name} en ${p.municipality}`} loading="lazy" width="800" height="600" />
-    <span class="property-overlay"></span>
-    <EstadoBadge property={p} />
-    {p.collection === 'referencia' && <span class="reference-chip">Referencia</span>}
-  </a>
+  {sold ? (
+    <div class="property-media">
+      <img src={image} alt={`${p.name} en ${p.municipality}`} loading="lazy" width="800" height="600" />
+      <span class="property-overlay"></span>
+      <EstadoBadge property={p} />
+    </div>
+  ) : (
+    <a class="property-media" href={href} aria-label={`Ver ${p.name}`}>
+      <img src={image} alt={`${p.name} en ${p.municipality}`} loading="lazy" width="800" height="600" />
+      <span class="property-overlay"></span>
+      <EstadoBadge property={p} />
+      {p.collection === 'referencia' && <span class="reference-chip">Referencia</span>}
+    </a>
+  )}
   <div class="property-body">
     <div class="property-location">{p.municipality} · {p.state}</div>
-    <h3 class="property-title"><a href={href}>{p.name}</a></h3>
+    <h3 class="property-title">{sold ? p.name : <a href={href}>{p.name}</a>}</h3>
     <p class="property-summary">{p.summary}</p>
     <div class="property-facts"><span><Icon name="bed" size={15} /> {p.bedrooms}</span><span><Icon name="area" size={15} /> {p.area}</span></div>
     <div class="property-footer">
       <div class="property-price"><small>Precio publicado</small><strong>{p.price}</strong></div>
-      <a class="card-arrow" href={href} aria-label={`Abrir ficha de ${p.name}`}><Icon name="arrow" size={18} /></a>
+      {sold
+        ? <span class="sold-flag"><Icon name="lock" size={14} /> Vendida</span>
+        : <a class="card-arrow" href={href} aria-label={`Abrir ficha de ${p.name}`}><Icon name="arrow" size={18} /></a>}
     </div>
   </div>
+  {sold && (
+    <button class="sold-trigger" type="button" data-sold-property={p.name} aria-label={`${p.name}: vendida, ver aviso`}></button>
+  )}
 </article>

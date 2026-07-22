@@ -31,8 +31,18 @@ export const nav = [
   { href: '/', label: 'Inicio' },
   { href: '/propiedades', label: 'Propiedades' },
   { href: '/contacto', label: 'Contacto' },
-  // 'Sobre mí' (/sobre-mi) sigue oculta hasta tener foto. Re-agregar aquí para mostrarla.
 ];
+
+/**
+ * Una propiedad vendida se muestra atenuada y sin enlaces: su ficha ya no es
+ * navegable y al pulsar la tarjeta se abre el aviso de privacidad.
+ */
+export function isSold(p: Property): boolean {
+  return p.status_key === 'vendida';
+}
+
+/** Propiedad activa a la que se redirige desde el aviso de propiedad vendida. */
+export const availableProperty: Property | undefined = properties.find((p) => !isSold(p));
 
 export function waLink(message: string = site.whatsapp_default_message): string {
   return `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(message)}`;
